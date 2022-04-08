@@ -23,5 +23,5 @@ jobs:
       - name: Publish Helm chart
         uses: stefanprodan/helm-gh-pages@master
         with:
-          charts_url: charts.databend.rs
+          charts_url: https://charts.databend.rs
           token: ${{ secrets.GITHUB_TOKEN }}
