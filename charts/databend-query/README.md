@@ -9,8 +9,8 @@
 
 To install the chart with release name `my-release`:
 ```
-helm repo add datafuselabs https://charts.datafuselabs.com
-helm install my-release datafuselabs/databend-query --namespace databend --create-namespace
+helm repo add databend https://charts.databend.rs
+helm install my-release databend/databend-query --namespace databend --create-namespace
 ```
 
 Note that for a production cluster, you will likely want to override the following parameters in [values.yaml](values.yaml) with your own values.

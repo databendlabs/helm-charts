@@ -9,6 +9,6 @@
 
 To install the chart with release name `my-release`:
 ```
-helm repo add datafuselabs https://charts.datafuselabs.com
-helm install my-release datafuselabs/databend-meta --namespace databend --create-namespace
+helm repo add databend https://charts.databend.rs
+helm install my-release databend/databend-meta --namespace databend --create-namespace
 ```
