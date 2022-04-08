@@ -1,0 +1,3 @@
+replicaCount: 3
+persistence:
+  size: 20Gi
