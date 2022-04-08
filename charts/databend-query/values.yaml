@@ -46,7 +46,7 @@ config:
     # table cache config
     tableCacheEnabled: true
     tableMemoryCacheMbSize: 1024
-    tableDiskCacheRoot: "_cache"
+    tableDiskCacheRoot: "/data/databend-query/_cache"
     tableDiskCacheMbSize: 10240
 
   # [log]
