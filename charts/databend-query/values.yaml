@@ -75,7 +75,7 @@ config:
     # [storage.s3]
     s3:
       bucket: "databend"
-      endpointUrl: ""
+      endpointUrl: "https://s3.amazonaws.com"
       accessKeyId: ""
       secretAccessKey: ""
 
@@ -113,6 +113,8 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
+          # servicePort defaults to service.ports.http
+          # servicePort: 8000
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
