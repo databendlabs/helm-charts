@@ -1,0 +1,27 @@
+name: Release Charts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.8.1
+      - name: Helm Deps
+        run: |
+          helm repo add minio https://charts.min.io/
+      - name: Publish Helm chart
+        uses: stefanprodan/helm-gh-pages@master
+        with:
+          charts_url: charts.datafuselabs.com
+          token: ${{ secrets.GITHUB_TOKEN }}
