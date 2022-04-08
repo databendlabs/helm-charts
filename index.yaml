@@ -1,0 +1,33 @@
+apiVersion: v1
+entries:
+  databend-meta:
+  - apiVersion: v2
+    appVersion: v0.7.9-nightly
+    created: "2022-04-08T03:27:26.172973548Z"
+    description: A Helm chart for databend meta
+    digest: ca9ee39ee15f14c55c10fe1f93258add2885668393a63afeade2c1070572083f
+    name: databend-meta
+    type: application
+    urls:
+    - charts.datafuselabs.com/databend-meta-0.1.0.tgz
+    version: 0.1.0
+  databend-query:
+  - apiVersion: v2
+    appVersion: v0.7.9-nightly
+    created: "2022-04-08T03:27:26.175899604Z"
+    dependencies:
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 3.6.3
+    description: A Helm chart for databend query
+    digest: 586e45e4030245970f309dbcbdad1cf0c359e45d2e5417f5414f4416691672c6
+    keywords:
+    - olap
+    - cloud data warehouse
+    name: databend-query
+    type: application
+    urls:
+    - charts.datafuselabs.com/databend-query-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-04-08T03:27:26.171917564Z"
