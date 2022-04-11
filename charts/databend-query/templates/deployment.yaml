@@ -95,8 +95,8 @@ spec:
               value: "8000"
           volumeMounts:
             - name: config
-              mountPath: /etc/databend-query/config.toml
-              subPath: config.toml
+              # Note: subPath volume mount will not receive ConfigMap update.
+              mountPath: /etc/databend-query
             {{- if .Values.persistence.enabled }}
             - name: data
               mountPath: {{ .Values.persistence.mountPath }}
