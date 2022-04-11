@@ -52,7 +52,7 @@ config:
   # [log]
   log:
     level: "ERROR"
-    dir: "/var/log/query"
+    dir: "/data/databend-query/_log"
 
   # [meta]
   meta:
