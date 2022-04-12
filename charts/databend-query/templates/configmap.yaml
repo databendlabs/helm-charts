@@ -37,10 +37,10 @@ data:
 
     [storage]
     storage_type = {{ .Values.config.storage.type | quote }}
-    {{- if eq .Values.config.storage.type "disk" }}
+    {{- if eq .Values.config.storage.type "fs" }}
 
-    [storage.disk]
-    data_path = {{ .Values.config.storage.disk.dataPath | quote }}
+    [storage.fs]
+    data_path = {{ .Values.config.storage.fs.dataPath | quote }}
     {{- else if eq .Values.config.storage.type "s3"}}
 
     [storage.s3]
