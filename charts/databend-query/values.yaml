@@ -8,7 +8,7 @@ image:
   repository: datafuselabs/databend-query
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.7.9-nightly-debian"
+  tag: "v0.7.15-nightly-debian"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -67,9 +67,9 @@ config:
 
   # [storage]
   storage:
-    type: "disk"
-    # [storage.disk]
-    disk:
+    type: "fs"
+    # [storage.fs]
+    fs:
       dataPath: "/data/databend-query/_data"
 
     # [storage.s3]

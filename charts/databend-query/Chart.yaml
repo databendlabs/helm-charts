@@ -1,9 +1,11 @@
 apiVersion: v2
 name: databend-query
 description: A Helm chart for databend query
+icon: https://databend.rs/img/favicon.svg
 keywords:
 - olap
 - cloud data warehouse
+- query
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -24,7 +26,7 @@ version: 0.1.1
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "v0.7.9-nightly"
+appVersion: "v0.7.15-nightly"
 
 dependencies:
 - name: minio
