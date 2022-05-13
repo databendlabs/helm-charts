@@ -8,7 +8,7 @@ image:
   repository: datafuselabs/databend-query
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.7.15-nightly-debian"
+  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -48,6 +48,9 @@ config:
     tableMemoryCacheMbSize: 1024
     tableDiskCacheRoot: "/data/databend-query/_cache"
     tableDiskCacheMbSize: 10240
+
+    managementMode: false
+    jwtKeyFile: ""
 
   # [log]
   log:
