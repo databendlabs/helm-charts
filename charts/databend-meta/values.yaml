@@ -25,9 +25,11 @@ serviceAccount:
 
 service:
   type: ClusterIP
-  ports:
-    admin: 28002
-    grpc: 9191
+  ports: {}
+    # metrics: 28001
+    # admin: 28002
+    # raft: 28003
+    # grpc: 9191
 
 config:
   logDir: /data/databend-meta/log

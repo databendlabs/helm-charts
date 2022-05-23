@@ -62,7 +62,7 @@ spec:
                 echo pod name $POD_NAME is not valid && exit 1
               fi
           ports:
-            - name: metric
+            - name: metrics
               containerPort: 28001
             - name: admin
               containerPort: 28002

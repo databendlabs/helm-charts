@@ -25,13 +25,13 @@ serviceAccount:
 
 service:
   type: ClusterIP
-  ports:
-    mysql: 3307
-    http: 8000
-    clickhouse: 9000
-    metric: 7070
-    admin: 8080
-    flight: 9090
+  ports: {}
+    # mysql: 3307
+    # http: 8000
+    # clickhouse: 9000
+    # metrics: 7070
+    # admin: 8080
+    # flight: 9090
 
 # Config settings to go into the mounted config.toml
 config:

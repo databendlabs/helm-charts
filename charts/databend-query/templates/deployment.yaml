@@ -41,7 +41,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: metric
+            - name: metrics
               containerPort: 7070
             - name: admin
               containerPort: 8080
