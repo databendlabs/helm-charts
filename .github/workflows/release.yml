@@ -24,6 +24,7 @@ jobs:
       - name: Helm Deps
         run: |
           helm repo add minio https://charts.min.io/
+          helm repo add bitnami https://charts.bitnami.com/bitnami
       - name: Publish Helm chart
         uses: helm/chart-releaser-action@v1.4.0
         with:
