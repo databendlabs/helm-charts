@@ -64,3 +64,21 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+sidecars: []
+# Attach additional containers to the pod
+# - name: your-image-name
+#   image: your-image
+#   imagePullPolicy: Always
+#   ports:
+#   - name: portname
+#     containerPort: 1234
+
+initContainers: []
+# Add additional init containers to the pod
+# - name: your-image-name
+#   image: your-image
+#   imagePullPolicy: Always
+#   ports:
+#   - name: portname
+#     containerPort: 1234
