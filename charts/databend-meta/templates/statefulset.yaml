@@ -97,7 +97,9 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: METASRV_LOG_DIR
-              value: "/data/databend-meta/log"
+              value: {{ .Values.config.logDir }}
+            - name: METASRV_LOG_LEVEL
+              value: {{ .Values.config.logLevel }}
             - name: METASRV_METRIC_API_ADDRESS
               value: 0.0.0.0:28001
             - name: ADMIN_API_ADDRESS
@@ -105,14 +107,16 @@ spec:
             - name: METASRV_GRPC_API_ADDRESS
               value: 0.0.0.0:9191
             - name: KVSRV_RAFT_DIR
-              value: "/data/databend-meta/raft"
+              value: {{ .Values.config.raft.dir }}
             - name: KVSRV_LISTEN_HOST
               value: 0.0.0.0
             - name: KVSRV_API_PORT
               value: "28003"
           volumeMounts:
+            {{- if .Values.persistence.enabled }}
             - name: data
-              mountPath: /data/databend-meta
+              mountPath: {{ .Values.persistence.mountPath }}
+            {{- end }}
         {{- if .Values.sidecars }}
         {{- include "common.tplvalues.render" (dict "value" .Values.sidecars "context" $) | nindent 8 }}
         {{- end }}
