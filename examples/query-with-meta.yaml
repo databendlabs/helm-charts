@@ -1,5 +1,3 @@
 config:
   meta:
-    embedded:
-      enabled: false
     address: db-databend-meta:9191

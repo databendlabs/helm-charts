@@ -2,8 +2,6 @@ replicaCount: 3
 config:
   clsuterId: cluster1
   meta:
-    embedded:
-      enabled: false
     address: db-databend-meta:9191
   storage:
     type: s3
