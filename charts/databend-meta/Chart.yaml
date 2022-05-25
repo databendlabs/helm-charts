@@ -6,6 +6,7 @@ keywords:
 - olap
 - cloud data warehouse
 - meta
+- kv
 
 # A chart can be either an 'application' or a 'library' chart.
 #
