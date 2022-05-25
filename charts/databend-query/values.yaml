@@ -59,11 +59,10 @@ config:
 
   # [meta]
   meta:
-    embedded:
-      # Not recommended for production
-      enabled: true
-      dir: "/data/databend-query/_meta_embedded"
-    address: databend-meta:9191
+    # Not recommended for production
+    embeddedDir: "/data/databend-query/_meta_embedded"
+    # Set address to use remote meta service
+    address: ""
     username: "root"
     password: "root"
     clientTimeoutInSecond: 60

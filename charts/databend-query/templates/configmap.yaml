@@ -28,9 +28,7 @@ data:
     log_dir = {{ .Values.config.log.dir | default "/var/log/query" | quote }}
 
     [meta]
-    {{- if .Values.config.meta.embedded.enabled }}
-    meta_embedded_dir = {{ .Values.config.meta.embedded.dir | quote }}
-    {{- else }}
+    meta_embedded_dir = {{ .Values.config.meta.embeddedDir | quote }}
     meta_address = {{ .Values.config.meta.address | quote }}
     meta_username = {{ .Values.config.meta.username | quote }}
     meta_password = {{ .Values.config.meta.password | quote }}
