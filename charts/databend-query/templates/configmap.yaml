@@ -33,7 +33,6 @@ data:
     meta_username = {{ .Values.config.meta.username | quote }}
     meta_password = {{ .Values.config.meta.password | quote }}
     meta_client_timeout_in_second = {{ .Values.config.meta.clientTimeoutInSecond | default 60 }}
-    {{- end }}
 
     [storage]
     storage_type = {{ .Values.config.storage.type | quote }}
