@@ -26,6 +26,7 @@ data:
     [log]
     log_level = {{ .Values.config.log.level | default "ERROR" | quote }}
     log_dir = {{ .Values.config.log.dir | default "/var/log/query" | quote }}
+    query_enabled = {{ .Values.config.log.queryEnabled }}
 
     [meta]
     meta_embedded_dir = {{ .Values.config.meta.embeddedDir | quote }}
