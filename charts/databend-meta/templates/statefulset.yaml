@@ -55,19 +55,17 @@ spec:
                   *)
                     echo "initialize follower node";
                     /databend-meta --id ${ID} --raft-advertise-host ${POD_IP} \
-                                  --config-id ${ID} --join ${NAME}-0.{{ $fullName }}:28003
+                                  --config-id ${ID} --join ${NAME}-0.{{ $fullName }}:28004
                   ;;
                 esac
               else
                 echo pod name $POD_NAME is not valid && exit 1
               fi
           ports:
-            - name: metric
-              containerPort: 28001
             - name: admin
               containerPort: 28002
             - name: raft
-              containerPort: 28003
+              containerPort: 28004
             - name: grpc
               containerPort: 9191
           livenessProbe:
@@ -100,8 +98,6 @@ spec:
               value: {{ .Values.config.logDir }}
             - name: METASRV_LOG_LEVEL
               value: {{ .Values.config.logLevel }}
-            - name: METASRV_METRIC_API_ADDRESS
-              value: 0.0.0.0:28001
             - name: ADMIN_API_ADDRESS
               value: 0.0.0.0:28002
             - name: METASRV_GRPC_API_ADDRESS
@@ -111,7 +107,7 @@ spec:
             - name: KVSRV_LISTEN_HOST
               value: 0.0.0.0
             - name: KVSRV_API_PORT
-              value: "28003"
+              value: "28004"
           volumeMounts:
             {{- if .Values.persistence.enabled }}
             - name: data

@@ -29,6 +29,10 @@ service:
     admin: 28002
     grpc: 9191
 
+serviceMonitor:
+  enabled: false
+  port: admin
+
 config:
   logDir: /data/databend-meta/log
   logLevel: INFO
