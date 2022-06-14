@@ -4,7 +4,7 @@ config:
     s3:
       accessKeyId: "minio-root"
       secretAccessKey: "minio-root"
-      
+
 minio:
   enabled: true
   rootUser: minio-root
