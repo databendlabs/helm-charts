@@ -10,7 +10,7 @@ data:
     [query]
     max_active_sessions = {{ .Values.config.query.maxActiveSessions | default 256 }}
     wait_timeout_mills = {{ .Values.config.query.waitTimeoutMills | default 5000 }}
-    
+
     tenant_id = {{ .Values.config.query.tenantId | quote }}
     cluster_id = {{ .Values.config.query.clusterId | quote }}
 
