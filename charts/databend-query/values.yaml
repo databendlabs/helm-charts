@@ -33,6 +33,10 @@ service:
     admin: 8080
     flight: 9090
 
+serviceMonitor:
+  enabled: false
+  port: metric
+
 # Config settings to go into the mounted config.toml
 config:
   # [query]
