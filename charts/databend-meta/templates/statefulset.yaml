@@ -49,12 +49,12 @@ spec:
                 case ${BASH_REMATCH[2]} in
                   0)
                     echo "initialize leader node";
-                    /databend-meta --id ${ID} --raft-advertise-host ${POD_IP} \
+                    /databend-meta --id ${ID} --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
                                   --config-id ${ID} --single
                   ;;
                   *)
                     echo "initialize follower node";
-                    /databend-meta --id ${ID} --raft-advertise-host ${POD_IP} \
+                    /databend-meta --id ${ID} --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
                                   --config-id ${ID} --join ${NAME}-0.{{ $fullName }}:28004
                   ;;
                 esac

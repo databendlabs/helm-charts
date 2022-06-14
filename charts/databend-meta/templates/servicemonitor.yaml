@@ -3,6 +3,8 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: {{ include "databend-meta.fullname" . }}
+  labels:
+    {{- include "databend-meta.labels" . | nindent 4 }}
 spec:
   jobLabel: {{ include "databend-meta.fullname" . }}
   selector:
