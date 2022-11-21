@@ -3,6 +3,26 @@ entries:
   databend-meta:
   - apiVersion: v2
     appVersion: v0.8.114-nightly
+    created: "2022-11-21T04:41:45.796729023Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: A Helm chart for databend meta
+    digest: d3efa458bcd19c87d88dff0b5ea17eabf4add1a98cb4f68f943d978cbc53c682
+    icon: https://databend.rs/img/favicon.svg
+    keywords:
+    - olap
+    - cloud data warehouse
+    - meta
+    - kv
+    name: databend-meta
+    type: application
+    urls:
+    - https://github.com/datafuselabs/helm-charts/releases/download/databend-meta-0.2.6/databend-meta-0.2.6.tgz
+    version: 0.2.6
+  - apiVersion: v2
+    appVersion: v0.8.114-nightly
     created: "2022-11-16T07:23:14.651653389Z"
     dependencies:
     - name: common
@@ -145,6 +165,29 @@ entries:
     - https://charts.databend.rs/databend-meta-0.1.0.tgz
     version: 0.1.0
   databend-query:
+  - apiVersion: v2
+    appVersion: v0.8.114-nightly
+    created: "2022-11-21T04:41:46.012834893Z"
+    dependencies:
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 3.6.3
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: A Helm chart for databend query
+    digest: ca3b1f980480b55ec33b911b615e9ddbb61c9e3daf00154a15a7d5b1109536f3
+    icon: https://databend.rs/img/favicon.svg
+    keywords:
+    - olap
+    - cloud data warehouse
+    - query
+    name: databend-query
+    type: application
+    urls:
+    - https://github.com/datafuselabs/helm-charts/releases/download/databend-query-0.2.6/databend-query-0.2.6.tgz
+    version: 0.2.6
   - apiVersion: v2
     appVersion: v0.8.114-nightly
     created: "2022-11-16T07:23:14.777233796Z"
@@ -362,4 +405,4 @@ entries:
     urls:
     - https://charts.databend.rs/databend-query-0.1.0.tgz
     version: 0.1.0
-generated: "2022-11-16T07:23:14.777427497Z"
+generated: "2022-11-21T04:41:46.012926197Z"
