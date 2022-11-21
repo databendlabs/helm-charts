@@ -32,6 +32,8 @@ service:
     metric: 7070
     admin: 8080
     flight: 9090
+  # Annotations to add to the service
+  annotations: {}
 
 serviceMonitor:
   enabled: false
