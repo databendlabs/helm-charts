@@ -48,7 +48,6 @@ data:
         level = {{ .Values.config.log.stderr.level | default "WARN" | quote }}
 
     [meta]
-      meta_type = "remote"
       endpoints = [{{ range .Values.config.meta.endpoints }}{{ . | quote }},{{ end }}]
       username = {{ .Values.config.meta.username | quote }}
       password = {{ .Values.config.meta.password | quote }}
