@@ -28,7 +28,7 @@ data:
         {{- end }}
       {{- end }}
 
-      {{- range $key, $value := .Values.config.query.extra }}
+      {{- range $field, $value := .Values.config.query.extra }}
       {{- if (kindIs "string" $value) }}
       {{ $field }} = {{ $value | quote }}
       {{- else }}
