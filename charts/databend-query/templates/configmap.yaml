@@ -79,6 +79,14 @@ data:
         {{- end }}
         {{- end }}
         {{- end }}
+      {{- else if eq .Values.config.storage.type "gcs"}}
+        {{- range $field, $value := .Values.config.storage.gcs }}
+        {{- if (kindIs "string" $value) }}
+        {{ $field }} = {{ $value | quote }}
+        {{- else }}
+        {{ $field }} = {{ $value }}
+        {{- end }}
+        {{- end }}
       {{- else if eq .Values.config.storage.type "oss"}}
       [storage.oss]
         {{- range $field, $value := .Values.config.storage.oss }}
