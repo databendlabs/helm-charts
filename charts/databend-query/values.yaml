@@ -97,6 +97,12 @@ config:
       secret_access_key: ""
       enable_virtual_host_style: false
 
+    # [storage.gcs]
+    gcs:
+      bucket: "databend"
+      endpoint_url: "https://storage.googleapis.com/"
+      credential: ""
+
     # [storage.oss]
     oss:
       bucket: "databend"
