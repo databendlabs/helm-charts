@@ -70,8 +70,8 @@ spec:
                     echo "initialize follower node";
                     exec /databend-meta --id ${ID} \
                       --log-stderr-on \
-                      --log-stderr-level ERROR \
-                      --log-file-level INFO \
+                      --log-stderr-level "{{ .Values.config.stdLogLevel }}" \
+                      --log-file-level "{{ .Values.config.logLevel }}" \
                       --log-file-dir "{{ .Values.config.logDir }}" \
                       --max-applied-log-to-keep 102400 \
                       --raft-dir "{{ .Values.config.raft.dir }}" \
