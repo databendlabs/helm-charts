@@ -43,9 +43,9 @@ spec:
               echo "check if my service is running and run commands ";
               if [[ $POD_NAME =~ (.*)-([0-9]+)$ ]]
               then
-                ID=$((BASH_REMATCH[2] + 1))
+                ID=${BASH_REMATCH[2]}
                 NAME=${BASH_REMATCH[1]}
-                echo "ID: $ID"  "NAME : $NAME"
+                echo "ID: $ID" "NAME : $NAME"
                 case ${BASH_REMATCH[2]} in
                   0)
                     echo "initialize leader node";

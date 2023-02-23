@@ -10,6 +10,7 @@ metadata:
   {{- end }}
 spec:
   type: {{ .Values.service.type }}
+  publishNotReadyAddresses: true
   ports:
     {{- range $key, $val := .Values.service.ports }}
     - port: {{ $val }}
