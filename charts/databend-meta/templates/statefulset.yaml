@@ -43,10 +43,10 @@ spec:
               echo "check if my service is running and run commands ";
               if [[ $POD_NAME =~ (.*)-([0-9]+)$ ]]
               then
-                ID=${BASH_REMATCH[2]}
                 NAME=${BASH_REMATCH[1]}
+                ID=${BASH_REMATCH[2]}
                 echo "ID: $ID" "NAME : $NAME"
-            {{- if and (.Release.IsInstall) (gt int(.Values.replicaCount) 3) }}
+            {{- if .Release.IsInstall }}
                 case ${BASH_REMATCH[2]} in
                   0)
                     echo "initialize leader node";
