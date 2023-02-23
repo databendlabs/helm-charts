@@ -11,6 +11,7 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   publishNotReadyAddresses: true
+  clusterIP: None
   ports:
     {{- range $key, $val := .Values.service.ports }}
     - port: {{ $val }}
