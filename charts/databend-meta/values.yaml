@@ -38,6 +38,7 @@ serviceMonitor:
 config:
   logDir: /data/databend-meta/log
   logLevel: INFO
+  stdLogLevel: WARN
 
   raft:
     dir: /data/databend-meta/raft
