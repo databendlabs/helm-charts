@@ -46,7 +46,7 @@ spec:
                 ID=${BASH_REMATCH[2]}
                 NAME=${BASH_REMATCH[1]}
                 echo "ID: $ID" "NAME : $NAME"
-            {{- if and (.Release.IsInstall) (gt .Values.replicaCount 3) }}
+            {{- if and (.Release.IsInstall) (gt int(.Values.replicaCount) 3) }}
                 case ${BASH_REMATCH[2]} in
                   0)
                     echo "initialize leader node";
