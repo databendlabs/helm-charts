@@ -3,6 +3,31 @@ entries:
   databend-meta:
   - apiVersion: v2
     appVersion: v1.0.3-nightly
+    created: "2023-03-06T07:42:10.352785396Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: A Helm chart for databend meta
+    digest: 0e91638e22378665db8b3a3a95d0cc2292bfa6dae089599c865b5677a21d1161
+    home: https://databend.rs
+    icon: https://databend.rs/img/favicon.svg
+    keywords:
+    - olap
+    - cloud data warehouse
+    - meta
+    - kv
+    maintainers:
+    - email: cloud.dev@datafuselabs.com
+      name: cloud.dev
+      url: https://databend.com
+    name: databend-meta
+    type: application
+    urls:
+    - https://github.com/datafuselabs/helm-charts/releases/download/databend-meta-0.6.1/databend-meta-0.6.1.tgz
+    version: 0.6.1
+  - apiVersion: v2
+    appVersion: v1.0.3-nightly
     created: "2023-03-06T07:34:34.060956085Z"
     dependencies:
     - name: common
@@ -447,6 +472,34 @@ entries:
   databend-query:
   - apiVersion: v2
     appVersion: v1.0.3-nightly
+    created: "2023-03-06T07:42:10.538994491Z"
+    dependencies:
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 3.6.3
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: A Helm chart for databend query
+    digest: 5738f9e9c7c6b496734e7bfcd8774f09c9e3e0040477888ef77eb4c41ebab776
+    home: https://databend.rs
+    icon: https://databend.rs/img/favicon.svg
+    keywords:
+    - olap
+    - cloud data warehouse
+    - query
+    maintainers:
+    - email: cloud.dev@datafuselabs.com
+      name: cloud.dev
+      url: https://databend.com
+    name: databend-query
+    type: application
+    urls:
+    - https://github.com/datafuselabs/helm-charts/releases/download/databend-query-0.5.1/databend-query-0.5.1.tgz
+    version: 0.5.1
+  - apiVersion: v2
+    appVersion: v1.0.3-nightly
     created: "2023-03-06T07:34:34.226885901Z"
     dependencies:
     - condition: minio.enabled
@@ -869,4 +922,4 @@ entries:
     urls:
     - https://charts.databend.rs/databend-query-0.1.0.tgz
     version: 0.1.0
-generated: "2023-03-06T07:34:34.22731491Z"
+generated: "2023-03-06T07:42:10.539380995Z"
