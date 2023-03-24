@@ -1,3 +1,4 @@
+{{- $storageType := .Values.config.storage.type }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -52,18 +53,9 @@ data:
       client_timeout_in_second = {{ .Values.config.meta.clientTimeoutInSecond | default 60 }}
 
     [storage]
-      storage_type = {{ .Values.config.storage.type | quote }}
+      storage_type = {{ $storageType | quote }}
 
-      {{- if eq .Values.config.storage.type "fs" }}
-      [storage.fs]
-        {{- range $field, $value := .Values.config.storage.fs }}
-        {{- if (kindIs "string" $value) }}
-        {{ $field }} = {{ $value | quote }}
-        {{- else }}
-        {{ $field }} = {{ $value }}
-        {{- end }}
-        {{- end }}
-      {{- else if eq .Values.config.storage.type "s3"}}
+      {{- if eq $storageType "s3"}}
       [storage.s3]
         {{- if .Values.minio.enabled }}
         bucket = {{ .Values.config.storage.s3.bucket | quote }}
@@ -79,21 +71,17 @@ data:
         {{- end }}
         {{- end }}
         {{- end }}
-      {{- else if eq .Values.config.storage.type "gcs"}}
-        {{- range $field, $value := .Values.config.storage.gcs }}
+      {{- else }}
+      [storage.{{ $storageType }}]
+        {{- range $name, $configs := .Values.config.storage }}
+        {{- if eq $name $storageType }}
+        {{- range $field, $value := $configs }}
         {{- if (kindIs "string" $value) }}
         {{ $field }} = {{ $value | quote }}
         {{- else }}
         {{ $field }} = {{ $value }}
         {{- end }}
         {{- end }}
-      {{- else if eq .Values.config.storage.type "oss"}}
-      [storage.oss]
-        {{- range $field, $value := .Values.config.storage.oss }}
-        {{- if (kindIs "string" $value) }}
-        {{ $field }} = {{ $value | quote }}
-        {{- else }}
-        {{ $field }} = {{ $value }}
         {{- end }}
         {{- end }}
       {{- end }}
