@@ -54,6 +54,7 @@ data:
 
     [storage]
       storage_type = {{ $storageType | quote }}
+      allow_insecure = {{ .Values.config.storage.allow_insecure | default false }}
 
       {{- if eq $storageType "s3"}}
       [storage.s3]
