@@ -497,6 +497,34 @@ entries:
   databend-query:
   - apiVersion: v2
     appVersion: v1.0.48-nightly
+    created: "2023-04-12T15:58:44.062875288Z"
+    dependencies:
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 3.6.3
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: A Helm chart for databend query
+    digest: 8b423972d45d3c2603eb0661c086c0a21a229ead62cfb544fbc92a19ab22f3dd
+    home: https://databend.rs
+    icon: https://databend.rs/img/favicon.svg
+    keywords:
+    - olap
+    - cloud data warehouse
+    - query
+    maintainers:
+    - email: cloud.dev@datafuselabs.com
+      name: cloud.dev
+      url: https://databend.com
+    name: databend-query
+    type: application
+    urls:
+    - https://github.com/datafuselabs/helm-charts/releases/download/databend-query-0.5.4/databend-query-0.5.4.tgz
+    version: 0.5.4
+  - apiVersion: v2
+    appVersion: v1.0.48-nightly
     created: "2023-04-08T06:06:30.939321061Z"
     dependencies:
     - condition: minio.enabled
@@ -1003,4 +1031,4 @@ entries:
     urls:
     - https://charts.databend.rs/databend-query-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-08T06:06:30.939586163Z"
+generated: "2023-04-12T15:58:44.063151502Z"
