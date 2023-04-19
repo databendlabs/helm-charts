@@ -111,6 +111,15 @@ config:
       access_key_id: ""
       access_key_secret: ""
 
+  #[cache]
+  cache:
+    dataCacheStorage: "none"
+
+    # [cache.disk]
+    # disk:
+    #   path: "./.databend/_cache"
+    #   maxBytes: 21474836480
+
 persistence:
   enabled: false
   existingClaim: ""
