@@ -21,9 +21,6 @@ data:
       max_server_memory_usage = {{ .Values.config.query.maxServerMemoryUsage | default 0 }}
       max_memory_limit_enabled = {{ .Values.config.query.maxMemoryLimitEnabled | default false }}
 
-      clickhouse_http_handler_host = {{ .Values.config.query.clickhouseHttpHandlerHost | default "127.0.0.1" | quote }}
-      clickhouse_http_handler_port = {{ .Values.service.ports.clickhouse | default 8124 | int64}}
-
       {{- range .Values.config.query.users }}
       [[query.users]]
         name = {{ .name | quote }}
