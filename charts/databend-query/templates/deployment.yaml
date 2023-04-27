@@ -50,7 +50,7 @@ spec:
             - name: mysql
               containerPort: 3307
             - name: clickhouse
-              containerPort: 9000
+              containerPort: 8124
             - name: http
               containerPort: 8000
           livenessProbe:
