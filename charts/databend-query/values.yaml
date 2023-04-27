@@ -28,7 +28,7 @@ service:
   ports:
     mysql: 3307
     http: 8000
-    clickhouse: 9000
+    clickhouse: 8124
     metric: 7070
     admin: 8080
     flight: 9090
@@ -51,6 +51,8 @@ config:
 
     managementMode: false
     jwtKeyFile: ""
+
+    clickhouseHttpHandlerHost: "0.0.0.0"
 
     # NOTE: user `root` is already built-in, will be ignored if defined here
     users: []
