@@ -21,6 +21,14 @@ data:
       max_server_memory_usage = {{ .Values.config.query.maxServerMemoryUsage | default 0 }}
       max_memory_limit_enabled = {{ .Values.config.query.maxMemoryLimitEnabled | default false }}
 
+      {{- range $field, $value := .Values.config.query.extra }}
+      {{- if (kindIs "string" $value) }}
+      {{ $field }} = {{ $value | quote }}
+      {{- else }}
+      {{ $field }} = {{ $value }}
+      {{- end }}
+      {{- end }}
+
       {{- range .Values.config.query.users }}
       [[query.users]]
         name = {{ .name | quote }}
@@ -30,14 +38,6 @@ data:
         {{- else if eq .authType "double_sha1_password"}}
         auth_string = {{ .authString | quote }}
         {{- end }}
-      {{- end }}
-
-      {{- range $field, $value := .Values.config.query.extra }}
-      {{- if (kindIs "string" $value) }}
-      {{ $field }} = {{ $value | quote }}
-      {{- else }}
-      {{ $field }} = {{ $value }}
-      {{- end }}
       {{- end }}
 
     [log]
