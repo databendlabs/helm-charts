@@ -69,6 +69,7 @@ jobs:
           kubectl get pods -n tenant1
 
       - name: Collect Logs
+        if: always()
         run: |
           kubectl logs -n databend-meta -l app.kubernetes.io/name=databend-meta
           kubectl logs -n tenant1 -l app.kubernetes.io/name=databend-query
