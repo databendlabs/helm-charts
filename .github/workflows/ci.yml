@@ -37,12 +37,12 @@ jobs:
         run: |
           helm dependency build
           helm lint .
-          helm diff install databend-meta . \
+          helm diff upgrade --install databend-meta . \
             --namespace databend-meta \
             --set bootstrap=true \
             --set replicaCount=3 \
             --set persistence.size=1Gi
-          helm install databend-meta . \
+          helm upgrade --install databend-meta . \
             --namespace databend-meta --create-namespace \
             --set bootstrap=true \
             --set replicaCount=3 \
@@ -55,12 +55,12 @@ jobs:
         run: |
           helm dependency build
           helm lint .
-          helm diff install cluster1 . \
+          helm diff upgrade --install cluster1 . \
             --namespace tenant1 \
             --set replicaCount=3 \
             --set config.query.tenantId=tenant1 \
             --set config.query.clusterId=cluster1
-          helm install cluster1 . \
+          helm upgrade --install cluster1 . \
             --namespace tenant1 --create-namespace \
             --set replicaCount=3 \
             --set config.query.tenantId=tenant1 \
