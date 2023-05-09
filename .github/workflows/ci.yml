@@ -38,7 +38,7 @@ jobs:
           helm dependency build
           helm lint .
           helm diff install databend-meta . \
-            --namespace databend-meta --create-namespace \
+            --namespace databend-meta \
             --set bootstrap=true \
             --set replicaCount=3 \
             --set persistence.size=1Gi
@@ -56,7 +56,7 @@ jobs:
           helm dependency build
           helm lint .
           helm diff install cluster1 . \
-            --namespace tenant1 --create-namespace \
+            --namespace tenant1 \
             --set replicaCount=3 \
             --set config.query.tenantId=tenant1 \
             --set config.query.clusterId=cluster1
