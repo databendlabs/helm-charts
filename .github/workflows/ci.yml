@@ -76,13 +76,13 @@ jobs:
             --namespace tenant1 --create-namespace \
             --values ../../tests/query-with-minio.yaml \
             --wait
-          kubectl describe pods -n tenant1
+          kubectl get pods -n tenant1
 
       - name: Run Tests
         shell: bash
         working-directory: tests
         run: |
-          docker network ls
+          kubectl -n tenant1 describe svcs
 
       - name: Collect Logs
         if: always()
