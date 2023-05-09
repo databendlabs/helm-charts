@@ -30,11 +30,17 @@ jobs:
         run: |
           helm repo add minio https://charts.min.io/
           helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm plugin install https://github.com/databus23/helm-diff
       - name: Install Databend Meta
         shell: bash
         run: |
           cd charts/databend-meta
           helm dependency build
+          helm diff install databend-meta . \
+            --namespace databend-meta --create-namespace \
+            --set bootstrap=true \
+            --set replicaCount=3 \
+            --set persistence.size=1Gi
           helm install databend-meta . \
             --namespace databend-meta --create-namespace \
             --set bootstrap=true \
@@ -47,6 +53,11 @@ jobs:
         run: |
           cd charts/databend-query
           helm dependency build
+          helm diff install cluster1 . \
+            --namespace tenant1 --create-namespace \
+            --set replicaCount=3 \
+            --set config.query.tenantId=tenant1 \
+            --set config.query.clusterId=cluster1
           helm install cluster1 . \
             --namespace tenant1 --create-namespace \
             --set replicaCount=3 \

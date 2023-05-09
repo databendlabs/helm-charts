@@ -44,7 +44,7 @@ data:
       [log.file]
         on = {{ .Values.config.log.file.enabled }}
         level = {{ .Values.config.log.file.level | default "INFO" | quote }}
-        dir = "/var/log/databend"
+        dir = {{ .Values.config.log.file.dir | default "/var/log/databend" | quote }}
       [log.stderr]
         on = {{ .Values.config.log.stderr.enabled }}
         level = {{ .Values.config.log.stderr.level | default "WARN" | quote }}
@@ -94,6 +94,6 @@ data:
       data_cache_storage = {{ .Values.config.cache.dataCacheStorage | default "none" | quote }}
       {{- if eq .Values.config.cache.dataCacheStorage "disk" }}
       [cache.disk]
-      path = {{ .Values.config.cache.disk.path | default "./.databend/_cache" | quote }}
+      path = {{ .Values.config.cache.disk.path | default "/var/lib/databend/cache" | quote }}
       max_bytes = {{ .Values.config.cache.disk.maxBytes | default 21474836480 | int64 }}
       {{- end }}
