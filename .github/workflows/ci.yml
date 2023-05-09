@@ -24,6 +24,8 @@ jobs:
           k3d cluster create databend
           kubectl cluster-info
       - uses: azure/setup-helm@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Helm Deps
         run: |
           helm repo add minio https://charts.min.io/
