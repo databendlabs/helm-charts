@@ -25,6 +25,7 @@ jobs:
       - uses: azure/setup-helm@v1
       - name: Helm Deps
         run: |
+          helm init
           helm repo add minio https://charts.min.io/
           helm repo add bitnami https://charts.bitnami.com/bitnami
       - name: Install Helm chart
