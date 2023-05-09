@@ -76,7 +76,7 @@ jobs:
             --namespace tenant1 --create-namespace \
             --values ../../tests/query-with-minio.yaml \
             --wait
-          kubectl get pods -n tenant1
+          kubectl describe pods -n tenant1
 
       - name: Run Tests
         shell: bash
