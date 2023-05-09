@@ -3,6 +3,10 @@ config:
   query:
     tenantId: tenant1
     clusterId: cluster1
+    users:
+      - name: databend
+        authType: double_sha1_password
+        authString: 3081f32caef285c232d066033c89a78d88a6d8a5  # databend
   storage:
     type: s3
     s3:

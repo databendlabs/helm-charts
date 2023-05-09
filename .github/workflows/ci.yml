@@ -21,6 +21,15 @@ jobs:
         run: |
           curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 
+      - name: Install BendSQL
+        shell: bash
+        run: |
+          curl -fsSLo /tmp/bendsql.tar.gz https://github.com/datafuselabs/bendsql/releases/download/v0.3.9/bendsql-x86_64-unknown-linux-gnu.tar.gz
+          tar -xvzf /tmp/bendsql.tar.gz
+          sudo mv bendsql /usr/local/bin/bendsql
+          sudo chmod +x /usr/local/bin/bendsql
+          rm /tmp/bendsql.tar.gz
+
       - name: Create k3d cluster
         run: |
           k3d cluster create databend
@@ -82,7 +91,7 @@ jobs:
         shell: bash
         working-directory: tests
         run: |
-          kubectl -n tenant1 describe svcs
+          kubectl -n tenant1 describe svc
 
       - name: Collect Logs
         if: always()
