@@ -35,10 +35,22 @@ jobs:
         run: |
           cd charts/databend-meta
           helm dependency build
-          helm install databend-meta .
+          helm install databend-meta . \
+            --namespace databend-meta --create-namespace \
+            --set bootstrap=true \
+            --set replicaCount=3 \
+            --set persistence.size=10Gi \
+            --wait
+          kubectl get pods -n databend-meta
       - name: Install Databend Query
         shell: bash
         run: |
           cd charts/databend-query
           helm dependency build
-          helm install databend-query .
+          helm install cluster1 . \
+            --namespace tenant1 --create-namespace \
+            --set replicaCount=3 \
+            --set config.query.tenantId=tenant1 \
+            --set config.query.clusterId=cluster1 \
+            --wait
+          kubectl get pods -n tenant1
