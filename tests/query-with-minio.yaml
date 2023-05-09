@@ -6,6 +6,6 @@ config:
   storage:
     type: s3
     s3:
-      endpoint: "http://minio.minio.svc:9000"
-      accessKeyId: "miniouser"
-      secretAccessKey: "miniopassword"
+      endpoint_url: "http://minio.minio.svc:9000"
+      access_key_id: "miniouser"
+      secret_access_key: "miniopassword"
