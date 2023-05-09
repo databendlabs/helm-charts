@@ -1,0 +1,16 @@
+replicaCount: 3
+
+config:
+  query:
+    tenantId: tenant1
+    clusterId: cluster1
+  storage:
+    type: s3
+    s3:
+      accessKeyId: "minio-root"
+      secretAccessKey: "minio-root"
+
+minio:
+  enabled: true
+  rootUser: minio-root
+  rootPassword: minio-root

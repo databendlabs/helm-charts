@@ -114,8 +114,8 @@ cache:
   maxBytes: 21474836480
   storageClass: ""
 
+# NOTE: Should only be enabled for testing
 # Configuration for minio subchart
-# Not recommended for production
 minio:
   enabled: false
   replicas: 5
@@ -124,11 +124,11 @@ minio:
   persistence:
     enabled: true
     storageClass: ""
-    size: 10Gi
+    size: 2Gi
   minioAPIPort: 9000
   resources:
     requests:
-      memory: 500Mi
+      memory: 100Mi
 
 ingress:
   enabled: false
