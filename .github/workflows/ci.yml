@@ -91,7 +91,7 @@ jobs:
         run: |
           kubectl -n tenant1 get svc
           addr=$(kubectl -n tenant1 get svc cluster1-databend-query -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-          echo 'select * from system.clusters' | bendsql -h $addr -u databend -p databend -o table
+          echo 'select * from system.clusters;' | bendsql -h $addr -u databend -p databend -o table
 
       - name: Collect Logs
         if: always()
