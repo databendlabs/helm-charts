@@ -9,3 +9,5 @@ config:
       endpoint_url: "http://minio.minio.svc:9000"
       access_key_id: "miniouser"
       secret_access_key: "miniopassword"
+service:
+  type: LoadBalancer

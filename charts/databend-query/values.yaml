@@ -26,12 +26,15 @@ serviceAccount:
 service:
   type: ClusterIP
   ports:
-    mysql: 3307
-    http: 8000
-    clickhouse: 8124
     metric: 7070
     admin: 8080
     flight: 9090
+
+    http: 8000
+    flightSQL: 8900
+    mysql: 3307
+    ckhttp: 8124
+
   # Annotations to add to the service
   annotations: {}
 

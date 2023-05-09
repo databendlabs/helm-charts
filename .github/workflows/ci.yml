@@ -78,6 +78,12 @@ jobs:
             --wait
           kubectl get pods -n tenant1
 
+      - name: Run Tests
+        shell: bash
+        working-directory: tests
+        run: |
+          docker network ls
+
       - name: Collect Logs
         if: always()
         run: |
