@@ -33,8 +33,8 @@ jobs:
           helm plugin install https://github.com/databus23/helm-diff
       - name: Install Databend Meta
         shell: bash
+        working-directory: charts/databend-meta
         run: |
-          cd charts/databend-meta
           helm dependency build
           helm lint .
           helm diff install databend-meta . \
@@ -51,8 +51,8 @@ jobs:
           kubectl get pods -n databend-meta
       - name: Install Databend Query
         shell: bash
+        working-directory: charts/databend-query
         run: |
-          cd charts/databend-query
           helm dependency build
           helm lint .
           helm diff install cluster1 . \
