@@ -16,6 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install k3d
+        shell: bash
         run: |
           curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
       - name: Create k3d cluster
@@ -27,7 +28,15 @@ jobs:
         run: |
           helm repo add minio https://charts.min.io/
           helm repo add bitnami https://charts.bitnami.com/bitnami
-      - name: Install Helm chart
+      - name: Install Databend Meta
+        shell: bash
         run: |
-          helm install databend-meta ./charts/databend-meta
-          helm install databend-query ./charts/databend-query
+          cd charts/databend-meta
+          helm dependency build
+          helm install databend-meta .
+      - name: Install Databend Query
+        shell: bash
+        run: |
+          cd charts/databend-query
+          helm dependency build
+          helm install databend-query .
