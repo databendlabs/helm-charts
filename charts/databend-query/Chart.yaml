@@ -34,10 +34,6 @@ version: 0.6.2
 appVersion: "v1.1.26-nightly"
 
 dependencies:
-- name: minio
-  version: 3.6.3
-  repository: https://charts.min.io/
-  condition: minio.enabled
 - name: common
   version: 1.x.x
   repository: https://charts.bitnami.com/bitnami

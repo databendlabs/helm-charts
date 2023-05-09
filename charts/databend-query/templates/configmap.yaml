@@ -61,18 +61,11 @@ data:
 
       {{- if eq $storageType "s3"}}
       [storage.s3]
-        {{- if .Values.minio.enabled }}
-        bucket = {{ .Values.config.storage.s3.bucket | quote }}
-        endpoint_url = "http://{{ printf "%s-%s.%s" .Release.Name "minio" .Release.Namespace }}:{{ .Values.minio.minioAPIPort }}"
-        access_key_id = {{ .Values.minio.rootUser | quote }}
-        secret_access_key = {{ .Values.minio.rootPassword | quote }}
-        {{- else }}
         {{- range $field, $value := .Values.config.storage.s3 }}
         {{- if (kindIs "string" $value) }}
         {{ $field }} = {{ $value | quote }}
         {{- else }}
         {{ $field }} = {{ $value }}
-        {{- end }}
         {{- end }}
         {{- end }}
       {{- else }}

@@ -114,22 +114,6 @@ cache:
   maxBytes: 21474836480
   storageClass: ""
 
-# NOTE: Should only be enabled for testing
-# Configuration for minio subchart
-minio:
-  enabled: false
-  replicas: 5
-  rootUser: rootuser
-  rootPassword: rootpassword
-  persistence:
-    enabled: true
-    storageClass: ""
-    size: 2Gi
-  minioAPIPort: 9000
-  resources:
-    requests:
-      memory: 100Mi
-
 ingress:
   enabled: false
   className: ""

@@ -55,6 +55,14 @@ jobs:
             --wait
           kubectl get pods -n databend-meta
 
+      - name: Install MinIO
+        shell: bash
+        run: |
+          helm upgrade --install minio minio/minio \
+            --namespace minio --create-namespace \
+            --values tests/minio.yaml \
+            --wait
+
       - name: Install Databend Query
         shell: bash
         working-directory: charts/databend-query

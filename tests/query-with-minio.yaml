@@ -1,5 +1,4 @@
 replicaCount: 3
-
 config:
   query:
     tenantId: tenant1
@@ -7,10 +6,6 @@ config:
   storage:
     type: s3
     s3:
-      accessKeyId: "minio-root"
-      secretAccessKey: "minio-root"
-
-minio:
-  enabled: true
-  rootUser: minio-root
-  rootPassword: minio-root
+      endpoint: "http://minio.minio.svc:9000"
+      accessKeyId: "miniouser"
+      secretAccessKey: "miniopassword"
