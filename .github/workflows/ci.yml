@@ -15,22 +15,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Install k3d
         shell: bash
         run: |
           curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
       - name: Create k3d cluster
         run: |
           k3d cluster create databend
           kubectl cluster-info
+
       - uses: azure/setup-helm@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Helm Deps
         run: |
           helm repo add minio https://charts.min.io/
           helm repo add bitnami https://charts.bitnami.com/bitnami
           helm plugin install https://github.com/databus23/helm-diff
+
       - name: Install Databend Meta
         shell: bash
         working-directory: charts/databend-meta
@@ -49,6 +54,7 @@ jobs:
             --set persistence.size=1Gi \
             --wait
           kubectl get pods -n databend-meta
+
       - name: Install Databend Query
         shell: bash
         working-directory: charts/databend-query
