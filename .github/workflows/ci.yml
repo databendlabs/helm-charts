@@ -39,7 +39,7 @@ jobs:
             --namespace databend-meta --create-namespace \
             --set bootstrap=true \
             --set replicaCount=3 \
-            --set persistence.size=2Gi \
+            --set persistence.size=1Gi \
             --wait
           kubectl get pods -n databend-meta
       - name: Install Databend Query
