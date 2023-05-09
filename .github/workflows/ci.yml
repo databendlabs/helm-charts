@@ -22,3 +22,12 @@ jobs:
         run: |
           k3d cluster create databend
           kubectl cluster-info
+      - uses: azure/setup-helm@v1
+      - name: Helm Deps
+        run: |
+          helm repo add minio https://charts.min.io/
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+      - name: Install Helm chart
+        run: |
+          helm install databend-meta ./charts/databend-meta
+          helm install databend-query ./charts/databend-query
