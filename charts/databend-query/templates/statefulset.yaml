@@ -1,10 +1,11 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "databend-query.fullname" . }}
   labels:
     {{- include "databend-query.labels" . | nindent 4 }}
 spec:
+  serviceName: {{ include "databend-query.fullname" . }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
