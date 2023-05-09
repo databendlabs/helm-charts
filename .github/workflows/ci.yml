@@ -85,7 +85,7 @@ jobs:
             --wait
           kubectl get pods -n tenant1
 
-      - name: Run Tests
+      - name: Checking Cluster Status
         shell: bash
         working-directory: tests
         run: |
