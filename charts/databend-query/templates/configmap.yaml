@@ -90,10 +90,10 @@ data:
         {{- end }}
       {{- end }}
 
+    {{- if .Values.cache.enabled }}
     [cache]
-      data_cache_storage = {{ .Values.config.cache.dataCacheStorage | default "none" | quote }}
-      {{- if eq .Values.config.cache.dataCacheStorage "disk" }}
+      data_cache_storage = "disk"
       [cache.disk]
-      path = {{ .Values.config.cache.disk.path | default "/var/lib/databend/cache" | quote }}
-      max_bytes = {{ .Values.config.cache.disk.maxBytes | default 21474836480 | int64 }}
-      {{- end }}
+        path = {{ .Values.cache.path | default "/var/lib/databend/cache" | quote }}
+        max_bytes = {{ .Values.cache.maxBytes | default 21474836480 | int64 }}
+    {{- end }}

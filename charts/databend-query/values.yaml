@@ -108,14 +108,11 @@ config:
       access_key_id: ""
       access_key_secret: ""
 
-  #[cache]
-  cache:
-    storage: "none"
-
-    # [cache.disk]
-    # disk:
-    #   path: "/var/lib/databend/cache"
-    #   maxBytes: 21474836480
+cache:
+  enabled: false
+  path: "/var/lib/databend/cache"
+  maxBytes: 21474836480
+  storageClass: ""
 
 # Configuration for minio subchart
 # Not recommended for production

@@ -36,6 +36,7 @@ jobs:
         run: |
           cd charts/databend-meta
           helm dependency build
+          helm lint .
           helm diff install databend-meta . \
             --namespace databend-meta --create-namespace \
             --set bootstrap=true \
@@ -53,6 +54,7 @@ jobs:
         run: |
           cd charts/databend-query
           helm dependency build
+          helm lint .
           helm diff install cluster1 . \
             --namespace tenant1 --create-namespace \
             --set replicaCount=3 \

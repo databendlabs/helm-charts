@@ -103,9 +103,9 @@ spec:
             - name: config
               # Note: subPath volume mount will not receive ConfigMap update.
               mountPath: /etc/databend-query
-            {{- if .Values.persistence.enabled }}
-            - name: data
-              mountPath: {{ .Values.persistence.mountPath }}
+            {{- if .Values.cache.enabled }}
+            - name: cache
+              mountPath: {{ .Values.cache.path | default "/var/lib/databend/cache" | quote }}
             {{- end }}
         {{- if .Values.sidecars }}
         {{- include "common.tplvalues.render" (dict "value" .Values.sidecars "context" $) | nindent 8 }}
@@ -114,15 +114,17 @@ spec:
         - name: config
           configMap:
             name: {{ include "databend-query.fullname" .}}
-        {{- if eq .Values.config.cache.storage "disk" }}
-        - name: data
-          persistentVolumeClaim:
-          {{- if .Values.persistence.existingClaim }}
-            claimName: {{ .Values.persistence.existingClaim }}
-          {{- else }}
-            claimName: {{ include "databend-query.fullname" . }}
-          {{- end }}
-        {{- end }}
+      {{- if .Values.cache.enabled }}
+      volumeClaimTemplates:
+      - metadata:
+          name: cache
+        spec:
+          accessModes: [ "ReadWriteOnce" ]
+          storageClassName: {{ .Values.cache.storageClass | quote }}
+          resources:
+            requests:
+              storage: {{ .Values.cache.maxBytes | quote }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
