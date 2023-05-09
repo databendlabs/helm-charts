@@ -1,0 +1,100 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: true
+
+jobs:
+  k3d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install k3d
+        shell: bash
+        run: |
+          curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
+      - name: Install BendSQL
+        shell: bash
+        run: |
+          sudo curl -L -o /etc/apt/sources.list.d/datafuselabs.sources https://repo.databend.rs/deb/datafuselabs.sources
+          sudo apt-get update
+          sudo apt-get install -y bendsql
+
+      - name: Create k3d cluster
+        run: |
+          k3d cluster create databend
+          kubectl cluster-info
+
+      - uses: azure/setup-helm@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Helm Deps
+        run: |
+          helm repo add minio https://charts.min.io/
+          helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm plugin install https://github.com/databus23/helm-diff
+
+      - name: Install Databend Meta
+        shell: bash
+        working-directory: charts/databend-meta
+        run: |
+          helm dependency build
+          helm lint .
+          helm diff upgrade --install databend-meta . \
+            --namespace databend-meta \
+            --set bootstrap=true \
+            --set replicaCount=3 \
+            --set persistence.size=1Gi
+          helm upgrade --install databend-meta . \
+            --namespace databend-meta --create-namespace \
+            --set bootstrap=true \
+            --set replicaCount=3 \
+            --set persistence.size=1Gi \
+            --wait
+          kubectl get pods -n databend-meta
+
+      - name: Install MinIO
+        shell: bash
+        run: |
+          helm upgrade --install minio minio/minio \
+            --namespace minio --create-namespace \
+            --values tests/minio.yaml \
+            --wait
+
+      - name: Install Databend Query
+        shell: bash
+        working-directory: charts/databend-query
+        run: |
+          helm dependency build
+          helm lint .
+          helm diff upgrade --install cluster1 . \
+            --namespace tenant1 \
+            --values ../../tests/query-with-minio.yaml
+          helm upgrade --install cluster1 . \
+            --namespace tenant1 --create-namespace \
+            --values ../../tests/query-with-minio.yaml \
+            --wait
+          kubectl get pods -n tenant1
+
+      - name: Checking Cluster Status
+        shell: bash
+        working-directory: tests
+        run: |
+          kubectl -n tenant1 get svc
+          addr=$(kubectl -n tenant1 get svc cluster1-databend-query -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+          echo 'select * from system.clusters;' | bendsql -h $addr -u databend -p databend --output table
+
+      - name: Collect Logs
+        if: always()
+        run: |
+          kubectl logs -n databend-meta -l app.kubernetes.io/name=databend-meta
+          kubectl logs -n tenant1 -l app.kubernetes.io/name=databend-query

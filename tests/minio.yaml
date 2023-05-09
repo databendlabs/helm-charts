@@ -1,0 +1,11 @@
+replicas: 3
+rootUser: miniouser
+rootPassword: miniopassword
+persistence:
+  enabled: true
+  storageClass: ""
+  size: 2Gi
+minioAPIPort: 9000
+resources:
+  requests:
+    memory: 100Mi

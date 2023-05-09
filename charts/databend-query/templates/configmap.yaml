@@ -44,7 +44,7 @@ data:
       [log.file]
         on = {{ .Values.config.log.file.enabled }}
         level = {{ .Values.config.log.file.level | default "INFO" | quote }}
-        dir = "/var/log/databend"
+        dir = {{ .Values.config.log.file.dir | default "/var/log/databend" | quote }}
       [log.stderr]
         on = {{ .Values.config.log.stderr.enabled }}
         level = {{ .Values.config.log.stderr.level | default "WARN" | quote }}
@@ -61,18 +61,11 @@ data:
 
       {{- if eq $storageType "s3"}}
       [storage.s3]
-        {{- if .Values.minio.enabled }}
-        bucket = {{ .Values.config.storage.s3.bucket | quote }}
-        endpoint_url = "http://{{ printf "%s-%s.%s" .Release.Name "minio" .Release.Namespace }}:{{ .Values.minio.minioAPIPort }}"
-        access_key_id = {{ .Values.minio.rootUser | quote }}
-        secret_access_key = {{ .Values.minio.rootPassword | quote }}
-        {{- else }}
         {{- range $field, $value := .Values.config.storage.s3 }}
         {{- if (kindIs "string" $value) }}
         {{ $field }} = {{ $value | quote }}
         {{- else }}
         {{ $field }} = {{ $value }}
-        {{- end }}
         {{- end }}
         {{- end }}
       {{- else }}
@@ -90,10 +83,10 @@ data:
         {{- end }}
       {{- end }}
 
+    {{- if .Values.cache.enabled }}
     [cache]
-      data_cache_storage = {{ .Values.config.cache.dataCacheStorage | default "none" | quote }}
-      {{- if eq .Values.config.cache.dataCacheStorage "disk" }}
+      data_cache_storage = "disk"
       [cache.disk]
-      path = {{ .Values.config.cache.disk.path | default "./.databend/_cache" | quote }}
-      max_bytes = {{ .Values.config.cache.disk.maxBytes | default 21474836480 | int64 }}
-      {{- end }}
+        path = {{ .Values.cache.path | default "/var/lib/databend/cache" | quote }}
+        max_bytes = {{ .Values.cache.maxBytes | default 21474836480 | int64 }}
+    {{- end }}
