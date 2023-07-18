@@ -2,6 +2,31 @@ apiVersion: v1
 entries:
   databend-meta:
   - apiVersion: v2
+    appVersion: v1.2.15-nightly
+    created: "2023-07-18T08:13:15.727776407Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: A Helm chart for databend meta
+    digest: e9f660ef7a5de807c9b194329fa17783be511a0152c5bb1588e3b38c1bb78ffb
+    home: https://databend.rs
+    icon: https://databend.rs/img/favicon.svg
+    keywords:
+    - olap
+    - cloud data warehouse
+    - meta
+    - kv
+    maintainers:
+    - email: cloud.dev@datafuselabs.com
+      name: cloud.dev
+      url: https://databend.com
+    name: databend-meta
+    type: application
+    urls:
+    - https://github.com/datafuselabs/helm-charts/releases/download/databend-meta-0.7.1/databend-meta-0.7.1.tgz
+    version: 0.7.1
+  - apiVersion: v2
     appVersion: v1.1.26-nightly
     created: "2023-05-07T01:19:48.064022832Z"
     dependencies:
@@ -520,6 +545,30 @@ entries:
     - https://charts.databend.rs/databend-meta-0.1.0.tgz
     version: 0.1.0
   databend-query:
+  - apiVersion: v2
+    appVersion: v1.2.15-nightly
+    created: "2023-07-18T08:13:15.845436544Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: A Helm chart for databend query
+    digest: 6fb5608a4209ea0a3e1bf6b2bc8475f16d79f8c09434457b2a8607f95959c4fb
+    home: https://databend.rs
+    icon: https://databend.rs/img/favicon.svg
+    keywords:
+    - olap
+    - cloud data warehouse
+    - query
+    maintainers:
+    - email: cloud.dev@datafuselabs.com
+      name: cloud.dev
+      url: https://databend.com
+    name: databend-query
+    type: application
+    urls:
+    - https://github.com/datafuselabs/helm-charts/releases/download/databend-query-0.7.1/databend-query-0.7.1.tgz
+    version: 0.7.1
   - apiVersion: v2
     appVersion: v1.1.30-nightly
     created: "2023-05-09T09:53:49.096132079Z"
@@ -1248,4 +1297,4 @@ entries:
     urls:
     - https://charts.databend.rs/databend-query-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-09T09:53:49.096509286Z"
+generated: "2023-07-18T08:13:15.846062183Z"
