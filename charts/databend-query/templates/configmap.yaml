@@ -56,7 +56,7 @@ data:
       client_timeout_in_second = {{ .Values.config.meta.clientTimeoutInSecond | default 60 }}
 
     [storage]
-      storage_type = {{ $storageType | quote }}
+      type = {{ $storageType | quote }}
       allow_insecure = {{ .Values.config.storage.allow_insecure | default false }}
 
       {{- if eq $storageType "s3"}}
