@@ -114,17 +114,6 @@ spec:
         - name: config
           configMap:
             name: {{ include "databend-query.fullname" .}}
-      {{- if .Values.cache.enabled }}
-      volumeClaimTemplates:
-      - metadata:
-          name: cache
-        spec:
-          accessModes: [ "ReadWriteOnce" ]
-          storageClassName: {{ .Values.cache.storageClass | quote }}
-          resources:
-            requests:
-              storage: {{ .Values.cache.maxBytes | quote }}
-      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -137,3 +126,14 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- if .Values.cache.enabled }}
+  volumeClaimTemplates:
+  - metadata:
+      name: cache
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: {{ .Values.cache.storageClass | quote }}
+      resources:
+        requests:
+          storage: {{ .Values.cache.maxBytes | quote }}
+  {{- end }}
