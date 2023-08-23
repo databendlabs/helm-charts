@@ -43,18 +43,10 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-            - name: metric
-              containerPort: 7070
-            - name: admin
-              containerPort: 8080
-            - name: flight
-              containerPort: 9090
-            - name: mysql
-              containerPort: 3307
-            - name: clickhouse
-              containerPort: 8124
-            - name: http
-              containerPort: 8000
+            {{- range $key, $val := .Values.service.ports }}
+            - name: {{ $key }}
+              containerPort: {{ $val}}
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /v1/health
