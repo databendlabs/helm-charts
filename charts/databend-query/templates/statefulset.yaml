@@ -86,15 +86,15 @@ spec:
             - name: QUERY_CLICKHOUSE_HTTP_HANDLER_HOST
               value: 0.0.0.0
             - name: QUERY_CLICKHOUSE_HTTP_HANDLER_PORT
-              value: ${{ .Values.service.ports.ckhttp }}
+              value: ${{ .Values.service.ports.ckhttp | quote }}
             - name: QUERY_HTTP_HANDLER_HOST
               value: 0.0.0.0
             - name: QUERY_HTTP_HANDLER_PORT
-              value: ${{ .Values.service.ports.http }}
+              value: ${{ .Values.service.ports.http | quote }}
             - name: QUERY_FLIGHT_SQL_HANDLER_HOST
               value: 0.0.0.0
             - name: QUERY_FLIGHT_SQL_HANDLER_PORT
-              value: ${{ .Values.service.ports.flight-sql }}
+              value: ${{ .Values.service.ports.flight-sql | quote }}
           volumeMounts:
             - name: config
               # Note: subPath volume mount will not receive ConfigMap update.
