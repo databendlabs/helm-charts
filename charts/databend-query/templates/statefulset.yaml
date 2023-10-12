@@ -74,27 +74,27 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: QUERY_METRIC_API_ADDRESS
-              value: "$(POD_IP):{{ .Values.service.ports.metric }}"
+              value: "$(POD_IP):{{ .Values.service.ports.metric | default 7070 }}"
             - name: QUERY_ADMIN_API_ADDRESS
-              value: "$(POD_IP):{{ .Values.service.ports.admin }}"
+              value: "$(POD_IP):{{ .Values.service.ports.admin | default 8080 }}"
             - name: QUERY_FLIGHT_API_ADDRESS
-              value: "$(POD_IP):{{ .Values.service.ports.flight }}"
-            - name: QUERY_MYSQL_HANDLER_HOST
-              value: 0.0.0.0
-            - name: QUERY_MYSQL_HANDLER_PORT
-              value: {{ .Values.service.ports.mysql | quote }}
-            - name: QUERY_CLICKHOUSE_HTTP_HANDLER_HOST
-              value: 0.0.0.0
-            - name: QUERY_CLICKHOUSE_HTTP_HANDLER_PORT
-              value: {{ .Values.service.ports.ckhttp | quote }}
+              value: "$(POD_IP):{{ .Values.service.ports.flight | default 9090 }}"
             - name: QUERY_HTTP_HANDLER_HOST
               value: 0.0.0.0
             - name: QUERY_HTTP_HANDLER_PORT
-              value: {{ .Values.service.ports.http | quote }}
+              value: {{ .Values.service.ports.http | default 8000 | quote }}
             - name: QUERY_FLIGHT_SQL_HANDLER_HOST
               value: 0.0.0.0
             - name: QUERY_FLIGHT_SQL_HANDLER_PORT
-              value: {{ .Values.service.ports.flightsql | quote }}
+              value: {{ .Values.service.ports.flightsql | default 8900 | quote }}
+            - name: QUERY_MYSQL_HANDLER_HOST
+              value: 0.0.0.0
+            - name: QUERY_MYSQL_HANDLER_PORT
+              value: {{ .Values.service.ports.mysql | default 3307 | quote }}
+            - name: QUERY_CLICKHOUSE_HTTP_HANDLER_HOST
+              value: 0.0.0.0
+            - name: QUERY_CLICKHOUSE_HTTP_HANDLER_PORT
+              value: {{ .Values.service.ports.ckhttp |default 8124 | quote }}
           volumeMounts:
             - name: config
               # Note: subPath volume mount will not receive ConfigMap update.
