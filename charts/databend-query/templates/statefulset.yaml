@@ -74,23 +74,27 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: QUERY_METRIC_API_ADDRESS
-              value: "$(POD_IP):7070"
+              value: "$(POD_IP):${{ .Values.service.ports.metric }}"
             - name: QUERY_ADMIN_API_ADDRESS
-              value: "$(POD_IP):8080"
+              value: "$(POD_IP):${{ .Values.service.ports.admin }}"
             - name: QUERY_FLIGHT_API_ADDRESS
-              value: "$(POD_IP):9090"
+              value: "$(POD_IP):${{ .Values.service.ports.flight }}"
             - name: QUERY_MYSQL_HANDLER_HOST
               value: 0.0.0.0
             - name: QUERY_MYSQL_HANDLER_PORT
-              value: "3307"
+              value: ${{ .Values.service.ports.mysql }}
             - name: QUERY_CLICKHOUSE_HTTP_HANDLER_HOST
               value: 0.0.0.0
             - name: QUERY_CLICKHOUSE_HTTP_HANDLER_PORT
-              value: "8124"
+              value: ${{ .Values.service.ports.ckhttp }}
             - name: QUERY_HTTP_HANDLER_HOST
               value: 0.0.0.0
             - name: QUERY_HTTP_HANDLER_PORT
-              value: "8000"
+              value: ${{ .Values.service.ports.http }}
+            - name: QUERY_FLIGHT_SQL_HANDLER_HOST
+              value: 0.0.0.0
+            - name: QUERY_FLIGHT_SQL_HANDLER_PORT
+              value: ${{ .Values.service.ports.flight-sql }}
           volumeMounts:
             - name: config
               # Note: subPath volume mount will not receive ConfigMap update.
