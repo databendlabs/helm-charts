@@ -96,7 +96,7 @@ spec:
             - name: QUERY_CLICKHOUSE_HTTP_HANDLER_PORT
               value: {{ .Values.service.ports.ckhttp |default 8124 | quote }}
             {{- with .Values.envs }}
-              {{- toYaml . | nindent 8 }}
+              {{- toYaml . | nindent 12 }}
             {{- end }}
           volumeMounts:
             - name: config

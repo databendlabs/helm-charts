@@ -143,6 +143,9 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+            {{- with .Values.envs }}
+              {{- toYaml . | nindent 12 }}
+            {{- end }}
           volumeMounts:
             {{- if .Values.persistence.enabled }}
             - name: data
