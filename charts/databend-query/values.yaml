@@ -38,6 +38,10 @@ service:
   # Annotations to add to the service
   annotations: {}
 
+envs: []
+  # - name: SENTRY_TRACES_SAMPLE_RATE
+  #   value: "0.5"
+
 serviceMonitor:
   enabled: false
   port: metric

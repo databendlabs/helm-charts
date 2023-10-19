@@ -95,6 +95,9 @@ spec:
               value: 0.0.0.0
             - name: QUERY_CLICKHOUSE_HTTP_HANDLER_PORT
               value: {{ .Values.service.ports.ckhttp |default 8124 | quote }}
+            {{- with .Values.envs }}
+              {{- toYaml . | nindent 8 }}
+            {{- end }}
           volumeMounts:
             - name: config
               # Note: subPath volume mount will not receive ConfigMap update.
