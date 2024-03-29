@@ -9,9 +9,6 @@ data:
   config.toml: |-
     # databend query config
     [query]
-      max_active_sessions = {{ .Values.config.query.maxActiveSessions | default 1024 }}
-      wait_timeout_mills = {{ .Values.config.query.waitTimeoutMills | default 5000 }}
-
       tenant_id = {{ .Values.config.query.tenantId | default .Release.Name | quote }}
       cluster_id = {{ .Values.config.query.clusterId | quote }}
 
@@ -83,7 +80,7 @@ data:
         {{- end }}
       {{- end }}
 
-    {{- if .Values.cache.enabled }}
+    {{- if and .Values.cache.enabled (eq (lower .Values.workload) "statefulset") }}
     [cache]
       data_cache_storage = "disk"
       [cache.disk]

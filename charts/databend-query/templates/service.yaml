@@ -19,4 +19,6 @@ spec:
     {{- end }}
   selector:
     {{- include "databend-query.selectorLabels" . | nindent 4 }}
+    {{- if eq (lower .Values.workload) "statefulset" }}
     statefulset.kubernetes.io/pod-name: {{ include "databend-query.fullname" . }}-0
+    {{- end }}

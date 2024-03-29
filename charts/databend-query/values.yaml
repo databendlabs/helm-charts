@@ -4,6 +4,9 @@
 
 replicaCount: 1
 
+# Could be StatefulSet or Deployment
+workload: StatefulSet
+
 image:
   repository: datafuselabs/databend-query
   pullPolicy: IfNotPresent
@@ -50,14 +53,14 @@ serviceMonitor:
 config:
   # [query]
   query:
-    maxActiveSessions: 256
-    waitTimeoutMills: 5000
-
     tenantId: ""
     clusterId: default
 
     managementMode: false
     jwtKeyFile: ""
+
+    extra:
+      max_active_sessions: 256
 
     # NOTE: user `root` is already built-in, will be ignored if defined here
     users: []
@@ -66,8 +69,6 @@ config:
       #   # sha1sum: echo -n "password" | sha1sum | cut -d' ' -f1 | xxd -r -p | sha1sum
       #   authType: double_sha1_password
       #   authString: 3081f32caef285c232d066033c89a78d88a6d8a5  # databend
-
-    extra: {}
 
   # [log]
   log:
@@ -115,6 +116,7 @@ config:
       access_key_id: ""
       access_key_secret: ""
 
+# NOTE: only for StatefulSet
 cache:
   enabled: false
   path: "/var/lib/databend/cache"

@@ -12,6 +12,11 @@ concurrency:
 
 jobs:
   k3d:
+    strategy:
+      matrix:
+        workload:
+          - StatefulSet
+          - Deployment
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -59,7 +64,7 @@ jobs:
             --set bootstrap=true \
             --set replicaCount=3 \
             --set persistence.size=1Gi \
-            --wait
+            --wait --timeout 2m0s
           kubectl get pods -n databend-meta
 
       - name: Install MinIO
@@ -68,7 +73,7 @@ jobs:
           helm upgrade --install minio minio/minio \
             --namespace minio --create-namespace \
             --values tests/minio.yaml \
-            --wait
+            --wait --timeout 1m0s
 
       - name: Install Databend Query
         shell: bash
@@ -82,7 +87,8 @@ jobs:
           helm upgrade --install cluster1 . \
             --namespace tenant1 --create-namespace \
             --values ../../tests/query-with-minio.yaml \
-            --wait
+            --set workload=${{ matrix.workload }} \
+            --wait --timeout 1m0s
           kubectl get pods -n tenant1
 
       - name: Checking Cluster Status
