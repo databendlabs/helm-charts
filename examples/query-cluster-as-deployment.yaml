@@ -1,2 +1,8 @@
 replicaCount: 3
 workload: Deployment
+service:
+  sessionAffinity:
+    type: ClientIP
+    config:
+      clientIP:
+        timeoutSeconds: 600

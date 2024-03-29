@@ -41,6 +41,10 @@ service:
   # Annotations to add to the service
   annotations: {}
 
+  sessionAffinity:
+    type: None
+    config: {}
+
 envs: []
   # - name: SENTRY_TRACES_SAMPLE_RATE
   #   value: "0.5"
