@@ -1,15 +1,13 @@
-{{- if eq (lower .Values.workload) "statefulset" }}
+{{- if eq (lower .Values.workload) "deployment" }}
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: {{ include "databend-query.fullname" . }}
   labels:
     {{- include "databend-query.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "databend-query.fullname" . }}
   replicas: {{ .Values.replicaCount }}
-  podManagementPolicy: Parallel
   selector:
     matchLabels:
       {{- include "databend-query.selectorLabels" . | nindent 6 }}
@@ -104,10 +102,6 @@ spec:
             - name: config
               # Note: subPath volume mount will not receive ConfigMap update.
               mountPath: /etc/databend-query
-            {{- if .Values.cache.enabled }}
-            - name: cache
-              mountPath: {{ .Values.cache.path | default "/var/lib/databend/cache" | quote }}
-            {{- end }}
         {{- if .Values.sidecars }}
         {{- include "common.tplvalues.render" (dict "value" .Values.sidecars "context" $) | nindent 8 }}
         {{- end }}
@@ -127,15 +121,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  {{- if .Values.cache.enabled }}
-  volumeClaimTemplates:
-  - metadata:
-      name: cache
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: {{ .Values.cache.storageClass | quote }}
-      resources:
-        requests:
-          storage: {{ .Values.cache.maxBytes | quote }}
-  {{- end }}
 {{- end }}
