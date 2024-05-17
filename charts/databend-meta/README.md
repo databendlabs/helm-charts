@@ -20,6 +20,11 @@ Note that for a production cluster, you will likely want to override the followi
 - `persistence.size` defaults to `10Gi` of disk space per pod, which you may increase or decrease for your use case.
 - `persistence.storageClass` uses the default storage class for your environment.
 
+Then install the chart with release name `my-release`:
+```
+helm upgrade my-release databend/databend-meta --namespace databend --create-namespace --values values.yaml
+```
+
 ## Uninstall
 
 To uninstall/delete a Helm release `my-release`:
