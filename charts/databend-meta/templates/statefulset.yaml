@@ -60,12 +60,12 @@ spec:
                       --log-file-dir "{{ .Values.config.logDir }}" \
                       --max-applied-log-to-keep 102400 \
                       --raft-dir "{{ .Values.config.raft.dir }}" \
-                      --admin-api-address ${POD_IP}:28002 \
-                      --grpc-api-address ${POD_IP}:9191 \
+                      --admin-api-address 0.0.0.0:28002 \
+                      --grpc-api-address 0.0.0.0:9191 \
                       --raft-api-port 28004 \
-                      --raft-listen-host ${POD_IP} \
+                      --raft-listen-host 0.0.0.0 \
                       --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                      --grpc-api-advertise-host ${POD_IP} \
+                      --grpc-api-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
                       --config-id ${ID} \
                       --single
                   ;;
@@ -78,12 +78,12 @@ spec:
                       --log-file-dir "{{ .Values.config.logDir }}" \
                       --max-applied-log-to-keep 102400 \
                       --raft-dir "{{ .Values.config.raft.dir }}" \
-                      --admin-api-address ${POD_IP}:28002 \
-                      --grpc-api-address ${POD_IP}:9191 \
+                      --admin-api-address 0.0.0.0:28002 \
+                      --grpc-api-address 0.0.0.0:9191 \
                       --raft-api-port 28004 \
-                      --raft-listen-host ${POD_IP} \
+                      --raft-listen-host 0.0.0.0 \
                       --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                      --grpc-api-advertise-host ${POD_IP} \
+                      --grpc-api-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
                       --config-id ${ID} \
                       --join ${NAME}-0.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004
                   ;;
@@ -96,12 +96,12 @@ spec:
                   --log-file-dir "{{ .Values.config.logDir }}" \
                   --max-applied-log-to-keep 102400 \
                   --raft-dir "{{ .Values.config.raft.dir }}" \
-                  --admin-api-address ${POD_IP}:28002 \
-                  --grpc-api-address ${POD_IP}:9191 \
+                  --admin-api-address 0.0.0.0:28002 \
+                  --grpc-api-address 0.0.0.0:9191 \
                   --raft-api-port 28004 \
-                  --raft-listen-host ${POD_IP} \
+                  --raft-listen-host 0.0.0.0 \
                   --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                  --grpc-api-advertise-host ${POD_IP} \
+                  --grpc-api-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
             {{- range $i := until $replicaCount }}
                   --join ${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004 \
             {{- end }}
@@ -139,10 +139,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-            - name: POD_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
             {{- with .Values.envs }}
               {{- toYaml . | nindent 12 }}
             {{- end }}
