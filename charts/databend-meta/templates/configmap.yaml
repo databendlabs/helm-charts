@@ -1,0 +1,11 @@
+{{- if not .Values.existingConfigMaps }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "databend-meta.fullname" . }}
+  labels:
+    {{- include "databend-meta.labels" . | nindent 4 }}
+data:
+  meta.yaml: |
+    {{- include "common.metaConfig" . | nindent 4 }}
+{{- end }}

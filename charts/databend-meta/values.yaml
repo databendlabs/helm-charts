@@ -36,13 +36,15 @@ serviceMonitor:
   enabled: false
   port: admin
 
+# would be ignored if `existingConfigMap` is set
 config:
   logDir: /data/databend-meta/log
   logLevel: INFO
   stdLogLevel: WARN
-
   raft:
     dir: /data/databend-meta/raft
+
+existingConfigMap: ""
 
 envs: []
 
