@@ -46,77 +46,47 @@ spec:
               echo "check if my service is running and run commands ";
               if [[ $POD_NAME =~ (.*)-([0-9]+)$ ]]
               then
-                NAME=${BASH_REMATCH[1]}
                 ID=${BASH_REMATCH[2]}
+                NAME=${BASH_REMATCH[1]}
                 echo "ID: $ID" "NAME : $NAME"
             {{- if $bootstrap }}
                 case ${BASH_REMATCH[2]} in
-                  0)
-                    echo "initialize leader node";
-                    exec /databend-meta --id ${ID} \
-                      --log-stderr-on \
-                      --log-stderr-level "{{ .Values.config.stdLogLevel }}" \
-                      --log-file-level "{{ .Values.config.logLevel }}" \
-                      --log-file-dir "{{ .Values.config.logDir }}" \
-                      --max-applied-log-to-keep 102400 \
-                      --raft-dir "{{ .Values.config.raft.dir }}" \
-                      --admin-api-address 0.0.0.0:28002 \
-                      --grpc-api-address 0.0.0.0:9191 \
-                      --raft-api-port 28004 \
-                      --raft-listen-host 0.0.0.0 \
-                      --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                      --grpc-api-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                      --config-id ${ID} \
-                      --single
+                0)
+                  echo "initialize leader node";
+                  exec /databend-meta --id ${ID} --config-id ${ID} \
+                      --single \
+                      --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
+                      --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
+                      --config-file /etc/databend/meta.yaml
                   ;;
-                  *)
-                    echo "initialize follower node";
-                    exec /databend-meta --id ${ID} \
-                      --log-stderr-on \
-                      --log-stderr-level "{{ .Values.config.stdLogLevel }}" \
-                      --log-file-level "{{ .Values.config.logLevel }}" \
-                      --log-file-dir "{{ .Values.config.logDir }}" \
-                      --max-applied-log-to-keep 102400 \
-                      --raft-dir "{{ .Values.config.raft.dir }}" \
-                      --admin-api-address 0.0.0.0:28002 \
-                      --grpc-api-address 0.0.0.0:9191 \
-                      --raft-api-port 28004 \
-                      --raft-listen-host 0.0.0.0 \
-                      --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                      --grpc-api-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                      --config-id ${ID} \
-                      --join ${NAME}-0.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004
+                *)
+                  echo "initialize follower node";
+                  exec /databend-meta --id ${ID} --config-id ${ID} \
+                      --join "${NAME}-0.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004" \
+                      --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
+                      --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
+                      --config-file /etc/databend/meta.yaml
                   ;;
                 esac
             {{- else }}
-                exec /databend-meta --id ${ID} \
-                  --log-stderr-on \
-                  --log-stderr-level "{{ .Values.config.stdLogLevel }}" \
-                  --log-file-level "{{ .Values.config.logLevel }}" \
-                  --log-file-dir "{{ .Values.config.logDir }}" \
-                  --max-applied-log-to-keep 102400 \
-                  --raft-dir "{{ .Values.config.raft.dir }}" \
-                  --admin-api-address 0.0.0.0:28002 \
-                  --grpc-api-address 0.0.0.0:9191 \
-                  --raft-api-port 28004 \
-                  --raft-listen-host 0.0.0.0 \
-                  --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                  --grpc-api-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-            {{- range $i := until $replicaCount }}
-                  --join ${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004 \
-            {{- end }}
-                  --config-id ${ID}
+                exec /databend-meta --id ${ID} --config-id ${ID} \
+                  {{- range $i := until $replicaCount }}
+                  --join "${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004" \
+                  {{- end }}
+                  --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
+                  --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
+                  --config-file /etc/databend/meta.yaml
             {{- end }}
               else
                 echo pod name $POD_NAME is not valid && exit 1
               fi
           ports:
-            - name: admin
-              containerPort: 28002
+            {{- range $key, $val := .Values.service.ports }}
+            - name: {{ $key }}
+              containerPort: {{ $val }}
+            {{- end }}
             - name: raft
               containerPort: 28004
-            - name: grpc
-              containerPort: 9191
           livenessProbe:
             httpGet:
               path: /v1/health
@@ -143,6 +113,8 @@ spec:
               {{- toYaml . | nindent 12 }}
             {{- end }}
           volumeMounts:
+            - name: config
+              mountPath: /etc/databend
             {{- if .Values.persistence.enabled }}
             - name: data
               mountPath: {{ .Values.persistence.mountPath }}
@@ -162,6 +134,14 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        - name: config
+          configMap:
+            {{- if .Values.existingConfigMaps }}
+            name: {{ .Values.existingConfigMap }}
+            {{- else }}
+            name: {{ include "databend-meta.fullname" . }}
+            {{- end }}
 {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
