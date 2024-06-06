@@ -6,10 +6,12 @@ grpc_api_address = "0.0.0.0:{{ .Values.service.ports.grpc }}"
 [log.stderr]
   on = true
   level = {{ .Values.config.stdLogLevel | quote }}
+  prefix_filter = {{ .Values.config.logPrefixFilter | quote }}
 [log.file]
   level = {{ .Values.config.logLevel | quote }}
   format = "json"
   dir = {{ .Values.config.logDir | quote }}
+  prefix_filter = {{ .Values.config.logPrefixFilter | quote }}
 
 [raft_config]
   cluster_name = {{ .Values.config.clusterName | quote }}
