@@ -3,6 +3,31 @@ entries:
   databend-meta:
   - apiVersion: v2
     appVersion: v1.2.453
+    created: "2024-06-06T03:07:45.683316391Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: A Helm chart for databend meta
+    digest: 89fb1377fd1328321bff8a82a8a12219da8a118733bcc8cd3ccd6f22e6491b8e
+    home: https://databend.rs
+    icon: https://databend.rs/img/favicon.svg
+    keywords:
+    - olap
+    - cloud data warehouse
+    - meta
+    - kv
+    maintainers:
+    - email: cloud.dev@datafuselabs.com
+      name: cloud.dev
+      url: https://databend.com
+    name: databend-meta
+    type: application
+    urls:
+    - https://github.com/datafuselabs/helm-charts/releases/download/databend-meta-0.8.0/databend-meta-0.8.0.tgz
+    version: 0.8.0
+  - apiVersion: v2
+    appVersion: v1.2.453
     created: "2024-05-28T07:20:04.254703704Z"
     dependencies:
     - name: common
@@ -1589,4 +1614,4 @@ entries:
     urls:
     - https://charts.databend.rs/databend-query-0.1.0.tgz
     version: 0.1.0
-generated: "2024-05-28T07:20:04.448781405Z"
+generated: "2024-06-06T03:07:45.785929333Z"
