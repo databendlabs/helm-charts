@@ -55,26 +55,26 @@ spec:
                   echo "initialize leader node";
                   exec /databend-meta --id ${ID} --config-id ${ID} \
                       --single \
-                      --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                      --grpc-api-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
+                      --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
+                      --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
                       --config-file /etc/databend/meta.yaml
                   ;;
                 *)
                   echo "initialize follower node";
                   exec /databend-meta --id ${ID} --config-id ${ID} \
-                      --join ${NAME}-0.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004
-                      --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                      --grpc-api-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
+                      --join "${NAME}-0.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004" \
+                      --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
+                      --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
                       --config-file /etc/databend/meta.yaml
                   ;;
                 esac
             {{- else }}
                 exec /databend-meta --id ${ID} --config-id ${ID} \
                   {{- range $i := until $replicaCount }}
-                  --join ${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004 \
+                  --join "${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004" \
                   {{- end }}
-                  --raft-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
-                  --grpc-api-advertise-host ${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local \
+                  --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
+                  --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
                   --config-file /etc/databend/meta.yaml
             {{- end }}
               else
