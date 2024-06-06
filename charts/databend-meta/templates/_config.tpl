@@ -13,7 +13,7 @@ grpc_api_address = "0.0.0.0:{{ .Values.service.ports.grpc }}"
 
 [raft_config]
   cluster_name = {{ .Values.config.clusterName | quote }}
-  raft_dir = "{{ .Values.config.raft.dir }}"
+  raft_dir = {{ .Values.config.raft.dir | quote }}
   raft_listen_host = "0.0.0.0"
   raft_api_port = 28004
   max_applied_log_to_keep = 102400
