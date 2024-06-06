@@ -41,6 +41,7 @@ config:
   clusterName: databend
   logDir: /data/databend-meta/log
   logLevel: INFO
+  logPrefixFilter: ""
   stdLogLevel: WARN
   raft:
     dir: /data/databend-meta/raft
