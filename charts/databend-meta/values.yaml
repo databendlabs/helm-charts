@@ -38,6 +38,7 @@ serviceMonitor:
 
 # would be ignored if `existingConfigMap` is set
 config:
+  clusterName: databend
   logDir: /data/databend-meta/log
   logLevel: INFO
   stdLogLevel: WARN
