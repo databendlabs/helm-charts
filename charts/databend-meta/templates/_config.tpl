@@ -1,5 +1,5 @@
 {{- define "common.metaConfig" -}}
-admin_api_address = "0.0.0.0:${{ .Values.service.ports.admin }}"
+admin_api_address = "0.0.0.0:{{ .Values.service.ports.admin }}"
 grpc_api_address = "0.0.0.0:{{ .Values.service.ports.grpc }}"
 
 [log]
