@@ -8,8 +8,9 @@
 ## Install
 
 To install the chart with release name `my-release`:
+
 ```
-helm repo add databend https://charts.databend.rs
+helm repo add databend https://charts.databend.com
 helm install my-release databend/databend-meta --namespace databend --create-namespace
 ```
 
@@ -21,6 +22,7 @@ Note that for a production cluster, you will likely want to override the followi
 - `persistence.storageClass` uses the default storage class for your environment.
 
 Then install the chart with release name `my-release`:
+
 ```
 helm upgrade my-release databend/databend-meta --namespace databend --create-namespace --values values.yaml
 ```
@@ -28,6 +30,7 @@ helm upgrade my-release databend/databend-meta --namespace databend --create-nam
 ## Uninstall
 
 To uninstall/delete a Helm release `my-release`:
+
 ```
 helm delete my-release --namespace databend
 ```
