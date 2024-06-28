@@ -29,7 +29,7 @@ jobs:
       - name: Install BendSQL
         shell: bash
         run: |
-          sudo curl -L -o /etc/apt/sources.list.d/datafuselabs.sources https://repo.databend.rs/deb/datafuselabs.sources
+          sudo curl -L -o /etc/apt/sources.list.d/datafuselabs.sources https://repo.databend.com/deb/datafuselabs.sources
           sudo apt-get update
           sudo apt-get install -y bendsql
 
