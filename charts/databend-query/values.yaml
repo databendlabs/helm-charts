@@ -93,6 +93,14 @@ config:
 
   # [meta]
   meta:
+    # If databend-meta is hosted in the same cluster as databend-data, you can enable this to generate endpoints in a K8s native way.
+    generateEndpoints: false
+    # Databend-meta replica count
+    metaReplicas: 3
+    # Databend-meta port if you need to change it
+    metaPort: 9191
+    # If databend-meta is located in the same cluster, but a different namespace, specify it here
+    metaNamespace: ""
     # Set endpoints to use remote meta service
     endpoints:
       # <podName>.<serviceName>.<namespace>.svc.cluster.local:9191
