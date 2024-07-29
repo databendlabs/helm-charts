@@ -32,7 +32,13 @@ service:
   # Annotations to add to the service
   annotations: {}
 
+# mutually exclusive with podMonitor
 serviceMonitor:
+  enabled: false
+  port: admin
+
+# mutually exclusive with serviceMonitor
+podMonitor:
   enabled: false
   port: admin
 
