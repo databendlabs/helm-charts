@@ -49,7 +49,14 @@ envs: []
   # - name: SENTRY_TRACES_SAMPLE_RATE
   #   value: "0.5"
 
+
+# mutually exclusive with podMonitor
 serviceMonitor:
+  enabled: false
+  port: metric
+
+# mutually exclusive with serviceMonitor
+podMonitor:
   enabled: false
   port: metric
 
