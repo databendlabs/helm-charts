@@ -95,9 +95,10 @@ config:
   meta:
     # Set endpoints to use remote meta service
     endpoints:
-      - "databend-meta-0.databend-meta.databend-meta.svc:9191"
-      - "databend-meta-1.databend-meta.databend-meta.svc:9191"
-      - "databend-meta-2.databend-meta.databend-meta.svc:9191"
+      # <podName>.<serviceName>.<namespace>.svc.cluster.local:9191
+      - "databend-meta-0.databend-meta.databend-meta.svc.cluster.local:9191"
+      - "databend-meta-1.databend-meta.databend-meta.svc.cluster.local:9191"
+      - "databend-meta-2.databend-meta.databend-meta.svc.cluster.local:9191"
     username: "root"
     password: "root"
     clientTimeoutInSecond: 60
