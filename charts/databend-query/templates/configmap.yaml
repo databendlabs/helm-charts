@@ -48,7 +48,7 @@ data:
 
     [meta]
       {{- if .Values.config.meta.generateEndpoints }}
-      endpoints = [{{ range $i := (untilStep 0 (int $.Values.config.meta.metaReplicas) 1) }}"{{ $.Release.Name }}-databend-meta-{{ $i }}.{{ $.Release.Name }}-databend-meta.{{ $.Values.config.meta.metaNamespace | default $.Release.Namespace }}.svc.cluster.local:{{ $.Values.config.meta.metaPort }}",{{ end }}]
+      endpoints = [{{ range $i := (untilStep 0 (int $.Values.config.meta.replicas) 1) }}"{{ $.Release.Name }}-databend-meta-{{ $i }}.{{ $.Release.Name }}-databend-meta.{{ $.Values.config.meta.namespace | default $.Release.Namespace }}.svc.cluster.local:{{ $.Values.config.meta.port }}",{{ end }}]
       {{- else }}
       endpoints = [{{ range .Values.config.meta.endpoints }}{{ . | quote }},{{ end }}]
       {{- end }}
