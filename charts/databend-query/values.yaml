@@ -119,14 +119,14 @@ config:
   # [storage]
   storage:
     type: "s3"
-    allow_insecure: false
+    allow_insecure: true
     # [storage.s3]
     s3:
       bucket: "databend"
       endpoint_url: "https://s3.amazonaws.com"
       access_key_id: ""
       secret_access_key: ""
-      enable_virtual_host_style: false
+      enable_virtual_host_style: true
 
     # [storage.gcs]
     gcs:
