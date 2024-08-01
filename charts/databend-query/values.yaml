@@ -72,6 +72,7 @@ config:
 
     extra:
       max_active_sessions: 256
+      databend_enterprise_license: ""
 
     # NOTE: user `root` is already built-in, will be ignored if defined here
     users: []
@@ -80,6 +81,10 @@ config:
       #   # sha1sum: echo -n "password" | sha1sum | cut -d' ' -f1 | xxd -r -p | sha1sum
       #   authType: double_sha1_password
       #   authString: 3081f32caef285c232d066033c89a78d88a6d8a5  # databend
+    
+    # NOTE: use it for on premise session parameters 
+    settings:
+      timezone: "UTC"
 
   # [log]
   log:
@@ -93,14 +98,6 @@ config:
 
   # [meta]
   meta:
-    # If databend-meta is hosted in the same cluster as databend-data, you can enable this to generate endpoints in a K8s native way.
-    generateEndpoints: false
-    # Databend-meta replica count
-    replicas: 3
-    # Databend-meta port if you need to change it
-    port: 9191
-    # If databend-meta is located in the same cluster, but a different namespace, specify it here
-    namespace: ""
     # Set endpoints to use remote meta service
     endpoints:
       # <podName>.<serviceName>.<namespace>.svc.cluster.local:9191
@@ -114,7 +111,7 @@ config:
   # [storage]
   storage:
     type: "s3"
-
+    allow_insecure: false
     # [storage.s3]
     s3:
       bucket: "databend"
