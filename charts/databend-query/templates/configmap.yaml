@@ -37,6 +37,14 @@ data:
         {{- end }}
       {{- end }}
 
+      [query.settings]
+        {{- range $field, $value := .Values.config.query.settings }}
+        {{- if (kindIs "string" $value) }}
+        {{ $field }} = {{ $value | quote }}
+        {{- else }}
+        {{ $field }} = {{ $value }}
+        {{- end }}
+        {{- end }}
     [log]
       [log.file]
         on = {{ .Values.config.log.file.enabled }}
