@@ -7,6 +7,10 @@ replicaCount: 1
 # Could be StatefulSet or Deployment
 workload: StatefulSet
 
+# By default, the queries are routed to the first node in the StatefulSet, and this node is considered 
+# as the coordinator. If you want to enable load balance queries across nodes, set this to true.
+enableLoadBalance: false
+
 image:
   repository: datafuselabs/databend-query
   pullPolicy: IfNotPresent
@@ -150,7 +154,6 @@ cache:
 
 ingress:
   enabled: false
-  loadBalanceQueries: false
   className: ""
   annotations: {}
     # kubernetes.io/ingress.class: nginx
