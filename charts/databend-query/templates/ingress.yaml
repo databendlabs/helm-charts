@@ -6,6 +6,9 @@
   {{- $_ := set .Values.ingress.annotations "kubernetes.io/ingress.class" .Values.ingress.className}}
   {{- end }}
 {{- end }}
+{{- if .Values.ingress.loadBalanceByRouteHint }}
+  {{- $_ := set .Values.ingress.annotations "nginx.ingress.kubernetes.io/upstream-hash-by" "$http_x_databend_route_hint" }}
+{{- end }}
 {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1
 {{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
