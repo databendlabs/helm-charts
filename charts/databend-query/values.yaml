@@ -202,6 +202,8 @@ tolerations: []
 
 affinity: {}
 
+topologySpreadConstraints: []
+
 sidecars: []
 # Attach additional containers to the pod
 # - name: your-image-name
