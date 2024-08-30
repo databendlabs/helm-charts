@@ -185,6 +185,8 @@ resources: {}
 
 podAnnotations: {}
 
+podLabels: {}
+
 podSecurityContext: {}
   # fsGroup: 2000
 
