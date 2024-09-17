@@ -45,6 +45,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: ["/bin/bash", "-c"]
           args:
+            {{- if .Values.customStartupScript }}
+            - {{ .Values.customStartupScript }}
+            {{- else }}
             -  |
               echo "check if my service is running and run commands ";
               if [[ $POD_NAME =~ (.*)-([0-9]+)$ ]]
@@ -52,7 +55,7 @@ spec:
                 ID=${BASH_REMATCH[2]}
                 NAME=${BASH_REMATCH[1]}
                 echo "ID: $ID" "NAME : $NAME"
-            {{- if $bootstrap }}
+              {{- if $bootstrap }}
                 case ${BASH_REMATCH[2]} in
                 0)
                   echo "initialize leader node";
@@ -71,7 +74,7 @@ spec:
                       --config-file /etc/databend/meta.yaml
                   ;;
                 esac
-            {{- else }}
+              {{- else }}
                 exec /databend-meta --id ${ID} --config-id ${ID} \
                   {{- range $i := until $replicaCount }}
                   --join "${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004" \
@@ -79,10 +82,11 @@ spec:
                   --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
                   --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
                   --config-file /etc/databend/meta.yaml
-            {{- end }}
+              {{- end }}
               else
                 echo pod name $POD_NAME is not valid && exit 1
               fi
+            {{- end }}
           ports:
             {{- range $key, $val := .Values.service.ports }}
             - name: {{ $key }}
@@ -122,6 +126,9 @@ spec:
             - name: data
               mountPath: {{ .Values.persistence.mountPath }}
             {{- end }}
+        {{- if .Values.extraVolumeMounts }}
+        {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumeMounts "context" $) | nindent 12 }}
+        {{- end }}
         {{- if .Values.sidecars }}
         {{- include "common.tplvalues.render" (dict "value" .Values.sidecars "context" $) | nindent 8 }}
         {{- end }}
@@ -137,6 +144,10 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.topologySpreadConstraints }}
+      topologySpreadConstraints:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       volumes:
         - name: config
           configMap:
@@ -145,6 +156,9 @@ spec:
             {{- else }}
             name: {{ include "databend-meta.fullname" . }}
             {{- end }}
+      {{- if .Values.extraVolumes }}
+      {{- include "common.tplvalues.render" (dict "value" .Values.extraVolumes "context" $) | nindent 8 }}
+      {{- end }}
 {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
     - metadata:
