@@ -9,6 +9,11 @@ replicaCount: 1
 # You will still need to mount your script as an extra volumes.
 customStartupScript: false
 
+extraVolumes: []
+extraVolumeMounts: []
+
+topologySpreadConstraints: []
+
 image:
   repository: datafuselabs/databend-meta
   pullPolicy: IfNotPresent
