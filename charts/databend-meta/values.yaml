@@ -5,6 +5,15 @@
 bootstrap: false
 replicaCount: 1
 
+# This value should be the name of the file containing the statup script for your Databend-meta pods. 
+# You will still need to mount your script as an extra volumes.
+customStartupScript: false
+
+extraVolumes: []
+extraVolumeMounts: []
+
+topologySpreadConstraints: []
+
 image:
   repository: datafuselabs/databend-meta
   pullPolicy: IfNotPresent
