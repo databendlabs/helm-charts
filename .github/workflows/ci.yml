@@ -17,6 +17,9 @@ jobs:
         workload:
           - StatefulSet
           - Deployment
+        version:
+          - v1.30.5
+          - v1.17.17
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,7 +38,7 @@ jobs:
 
       - name: Create k3d cluster
         run: |
-          k3d cluster create databend
+          k3d cluster create databend --image rancher/k3s:${{ matrix.version }}-k3s1
           kubectl cluster-info
 
       - uses: azure/setup-helm@v4
