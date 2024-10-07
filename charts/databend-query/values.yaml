@@ -45,6 +45,7 @@ service:
 
   # Annotations to add to the service
   annotations: {}
+  extraLabels: {}
 
   sessionAffinity:
     type: None

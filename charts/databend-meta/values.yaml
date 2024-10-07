@@ -40,6 +40,7 @@ service:
     grpc: 9191
   # Annotations to add to the service
   annotations: {}
+  extraLabels: {}
 
 # mutually exclusive with podMonitor
 serviceMonitor:
