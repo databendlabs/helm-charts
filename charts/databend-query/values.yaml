@@ -31,6 +31,11 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+livenessProbe:
+  enabled: true
+readinessProbe:
+  enabled: true
+
 service:
   type: ClusterIP
   ports:
