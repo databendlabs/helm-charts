@@ -52,17 +52,24 @@ spec:
             - name: {{ $key }}
               containerPort: {{ $val}}
             {{- end }}
+          {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
               path: /v1/health
               port: admin
+            initialDelaySeconds: {{ default 5 .Values.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ default 15 .Values.livenessProbe.initialDelaySeconds }}
+            failureThreshold: {{ default 3 .Values.livenessProbe.initialDelaySeconds }}
+          {{- end }}
+          {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
               path: /v1/health
               port: admin
-            initialDelaySeconds: 5
-            periodSeconds: 15
-            failureThreshold: 3
+            initialDelaySeconds: {{ default 5 .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ default 15 .Values.readinessProbe.initialDelaySeconds }}
+            failureThreshold: {{ default 3 .Values.readinessProbe.initialDelaySeconds }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
