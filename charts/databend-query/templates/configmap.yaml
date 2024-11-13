@@ -53,6 +53,20 @@ data:
       [log.stderr]
         on = {{ .Values.config.log.stderr.enabled }}
         level = {{ .Values.config.log.stderr.level | default "WARN" | quote }}
+      [log.query]
+        on = {{ .Values.config.log.query.enabled }}
+        otlp_endpoint = {{ .Values.config.log.query.otlpEndpoint | quote }}
+        otlp_protocol = {{ .Values.config.log.query.otlpProtocol | default "http" | quote }}
+        [log.query.otlp_labels]
+          tenant = {{ .Values.config.log.query.otlp_labels.tenant | quote }}
+          warehouse = {{ .Values.config.log.query.otlp_labels.warehouse | quote }}
+      [log.profile]
+        on = {{ .Values.config.log.profile.enabled }}
+        otlp_endpoint = {{ .Values.config.log.profile.otlp_endpoint | quote }}
+        otlp_protocol = {{ .Values.config.log.profile.otlp_protocol | default "http" | quote }}
+        [log.profile.otlp_labels]
+          tenant = {{ .Values.config.log.profile.otlp_labels.tenant | quote }}
+          warehouse = {{ .Values.config.log.profile.otlp_labels.warehouse | quote }}
 
     [meta]
       {{- if .Values.config.meta.generateEndpoints }}

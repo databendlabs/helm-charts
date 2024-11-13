@@ -100,6 +100,20 @@ config:
     stderr:
       enabled: true
       level: "WARN"
+    query:
+      enabled: false
+      otlp_endpoint: ""
+      otlp_protocol: "http"
+      otlp_labels:
+        tenant: ""
+        warehouse: ""
+    profile:
+      enabled: false
+      otlp_endpoint: ""
+      otlp_protocol: "http"
+      otlp_labels:
+        tenant: ""
+        warehouse: ""
 
   # [meta]
   meta:
