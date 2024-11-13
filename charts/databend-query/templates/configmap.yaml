@@ -57,24 +57,28 @@ data:
         on = {{ .Values.config.log.query.enabled }}
         otlp_endpoint = {{ .Values.config.log.query.otlp_endpoint | quote }}
         otlp_protocol = {{ .Values.config.log.query.otlp_protocol | default "http" | quote }}
-        [log.query.otlp_labels]
-          {{- if .Values.config.log.query.otlp_labels.tenant }}
-          tenant = {{ .Values.config.log.query.otlp_labels.tenant | quote }}
-          {{- end }}
-          {{- if .Values.config.log.query.otlp_labels.warehouse }}
-          warehouse = {{ .Values.config.log.query.otlp_labels.warehouse | quote }}
-          {{- end }}
+      {{- with .Values.config.log.query.otlp_labels }}
+      [log.query.otlp_labels]
+        {{- if .tenant }}
+        tenant = {{ .tenant | quote }}
+        {{- end }}
+        {{- if .warehouse }}
+        warehouse = {{ .warehouse | quote }}
+        {{- end }}
+      {{- end }}
       [log.profile]
         on = {{ .Values.config.log.profile.enabled }}
         otlp_endpoint = {{ .Values.config.log.profile.otlp_endpoint | quote }}
         otlp_protocol = {{ .Values.config.log.profile.otlp_protocol | default "http" | quote }}
-        [log.profile.otlp_labels]
-          {{- if .Values.config.log.profile.otlp_labels.tenant }}
-          tenant = {{ .Values.config.log.profile.otlp_labels.tenant | quote }}
-          {{- end }}
-          {{- if .Values.config.log.profile.otlp_labels.warehouse }}
-          warehouse = {{ .Values.config.log.profile.otlp_labels.warehouse | quote }}
-          {{- end }}
+      {{- with .Values.config.log.profile.otlp_labels }}
+      [log.profile.otlp_labels]
+        {{- if .tenant }}
+        tenant = {{ .tenant | quote }}
+        {{- end }}
+        {{- if .warehouse }}
+        warehouse = {{ .warehouse | quote }}
+        {{- end }}
+      {{- end }}
 
     [meta]
       {{- if .Values.config.meta.generateEndpoints }}
