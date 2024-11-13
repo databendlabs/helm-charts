@@ -55,8 +55,8 @@ data:
         level = {{ .Values.config.log.stderr.level | default "WARN" | quote }}
       [log.query]
         on = {{ .Values.config.log.query.enabled }}
-        otlp_endpoint = {{ .Values.config.log.query.otlpEndpoint | quote }}
-        otlp_protocol = {{ .Values.config.log.query.otlpProtocol | default "http" | quote }}
+        otlp_endpoint = {{ .Values.config.log.query.otlp_endpoint | quote }}
+        otlp_protocol = {{ .Values.config.log.query.otlp_protocol | default "http" | quote }}
         [log.query.otlp_labels]
           {{- if .Values.config.log.query.otlp_labels.tenant }}
           tenant = {{ .Values.config.log.query.otlp_labels.tenant | quote }}
