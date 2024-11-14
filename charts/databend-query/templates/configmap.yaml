@@ -57,8 +57,8 @@ data:
         on = {{ .Values.config.log.query.enabled }}
         otlp_endpoint = {{ .Values.config.log.query.otlp_endpoint | quote }}
         otlp_protocol = {{ .Values.config.log.query.otlp_protocol | default "http" | quote }}
-      {{- with .Values.config.log.profile.otlp_labels }}
-      [log.profile.otlp_labels]
+      {{- with .Values.config.log.query.otlp_labels }}
+      [log.query.otlp_labels]
         {{- range $key, $value := . }}
         {{ $key }} = {{ $value | quote }}
         {{- end }}
