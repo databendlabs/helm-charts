@@ -106,6 +106,14 @@ config:
     stderr:
       enabled: true
       level: "WARN"
+    query:
+      enabled: false
+      otlp_endpoint: ""
+      otlp_protocol: "http"
+    profile:
+      enabled: false
+      otlp_endpoint: ""
+      otlp_protocol: "http"
 
   # [meta]
   meta:
