@@ -12,4 +12,5 @@ spec:
       {{- include "databend-query.selectorLabels" . | nindent 6 }}
   endpoints:
     - port: {{ .Values.serviceMonitor.port }}
+      path: /metrics
 {{- end }}
