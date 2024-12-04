@@ -14,6 +14,8 @@ data:
 
       management_mode = {{ .Values.config.query.managementMode }}
       jwt_key_file = {{ .Values.config.query.jwtKeyFile | quote }}
+      default_compression={{ .Values.config.query.defaultCompression | default "lz4" | quote  }}
+      table_engine_memory_enabled = {{ .Values.config.query.tableEngineMemoryEnabled | default true }}
 
       max_server_memory_usage = {{ .Values.config.query.maxServerMemoryUsage | default 0 }}
       max_memory_limit_enabled = {{ .Values.config.query.maxMemoryLimitEnabled | default false }}

@@ -80,6 +80,12 @@ config:
 
     managementMode: false
     jwtKeyFile: ""
+    tableEngineMemoryEnabled: true
+    # lz4, zstd, snappy
+    defaultCompression: 'lz4'
+
+    maxMemoryLimitEnabled: false
+    maxServerMemoryUsage: 0
 
     extra:
       max_active_sessions: 256
