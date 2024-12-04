@@ -60,6 +60,7 @@ podMonitor:
 # would be ignored if `existingConfigMap` is set
 config:
   clusterName: databend
+  logFile: true
   logDir: /data/databend-meta/log
   logLevel: INFO
   logPrefixFilter: ""
