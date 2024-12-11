@@ -81,6 +81,9 @@ config:
     managementMode: false
     jwtKeyFile: ""
 
+    maxMemoryLimitEnabled: false
+    maxServerMemoryUsage: 0
+
     extra:
       max_active_sessions: 256
       databend_enterprise_license: ""
