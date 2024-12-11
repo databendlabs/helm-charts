@@ -81,8 +81,8 @@ config:
     managementMode: false
     jwtKeyFile: ""
 
-    maxServerMemoryUsage: 0
     maxMemoryLimitEnabled: false
+    maxServerMemoryUsage: 0
 
     extra:
       max_active_sessions: 256
