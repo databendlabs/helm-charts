@@ -18,7 +18,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-imagePullSecrets: []
+imagePullSecrets: [ ]
 nameOverride: ""
 fullnameOverride: ""
 
@@ -26,7 +26,7 @@ serviceAccount:
   # Specifies whether a service account should be created
   create: true
   # Annotations to add to the service account
-  annotations: {}
+  annotations: { }
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
@@ -49,16 +49,16 @@ service:
     ckhttp: 8124
 
   # Annotations to add to the service
-  annotations: {}
-  extraLabels: {}
+  annotations: { }
+  extraLabels: { }
 
   sessionAffinity:
     type: None
-    config: {}
+    config: { }
 
-envs: []
+envs: [ ]
   # - name: SENTRY_TRACES_SAMPLE_RATE
-  #   value: "0.5"
+#   value: "0.5"
 
 
 # mutually exclusive with podMonitor
@@ -81,17 +81,20 @@ config:
     managementMode: false
     jwtKeyFile: ""
 
+    maxServerMemoryUsage: 0
+    maxMemoryLimitEnabled: false
+
     extra:
       max_active_sessions: 256
       databend_enterprise_license: ""
 
     # NOTE: user `root` is already built-in, will be ignored if defined here
-    users: []
+    users: [ ]
       # - name: databend
       #   # available type: sha256_password, double_sha1_password, no_password, jwt
       #   # sha1sum: echo -n "password" | sha1sum | cut -d' ' -f1 | xxd -r -p | sha1sum
       #   authType: double_sha1_password
-      #   authString: 3081f32caef285c232d066033c89a78d88a6d8a5  # databend
+    #   authString: 3081f32caef285c232d066033c89a78d88a6d8a5  # databend
     
     # NOTE: use it for on premise session parameters 
     settings:
@@ -170,9 +173,9 @@ cache:
 ingress:
   enabled: false
   className: ""
-  annotations: {}
+  annotations: { }
     # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  # kubernetes.io/tls-acme: "true"
   hosts:
     - host: chart-example.local
       paths:
@@ -180,12 +183,12 @@ ingress:
           pathType: ImplementationSpecific
           # servicePort defaults to service.ports.http
           # servicePort: 8000
-  tls: []
+  tls: [ ]
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources: { }
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -195,32 +198,32 @@ resources: {}
   #   memory: 128Mi
   # requests:
   #   cpu: 100m
-  #   memory: 128Mi
+#   memory: 128Mi
 
-podAnnotations: {}
+podAnnotations: { }
 
-podLabels: {}
+podLabels: { }
 
-podSecurityContext: {}
-  # fsGroup: 2000
+podSecurityContext: { }
+# fsGroup: 2000
 
-securityContext: {}
+securityContext: { }
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
-  # runAsUser: 1000
+# runAsUser: 1000
 
-nodeSelector: {}
+nodeSelector: { }
 
-tolerations: []
+tolerations: [ ]
 
-affinity: {}
+affinity: { }
 
-topologySpreadConstraints: []
+topologySpreadConstraints: [ ]
 
-sidecars: []
+sidecars: [ ]
 # Attach additional containers to the pod
 # - name: your-image-name
 #   image: your-image
@@ -229,7 +232,7 @@ sidecars: []
 #   - name: portname
 #     containerPort: 1234
 
-initContainers: []
+initContainers: [ ]
 # Add additional init containers to the pod
 # - name: your-image-name
 #   image: your-image
