@@ -35,8 +35,14 @@ serviceAccount:
 
 livenessProbe:
   enabled: true
+  initialDelaySeconds: 5
+  periodSeconds: 15
+  failureThreshold: 3
 readinessProbe:
   enabled: true
+  initialDelaySeconds: 5
+  periodSeconds: 15
+  failureThreshold: 3
 
 service:
   type: ClusterIP
