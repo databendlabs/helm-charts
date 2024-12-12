@@ -8,6 +8,7 @@ grpc_api_address = "0.0.0.0:{{ .Values.service.ports.grpc }}"
   level = {{ .Values.config.stdLogLevel | quote }}
   prefix_filter = {{ .Values.config.logPrefixFilter | quote }}
 [log.file]
+  on = {{ .Values.config.logFile | quote }}
   level = {{ .Values.config.logLevel | quote }}
   format = "json"
   dir = {{ .Values.config.logDir | quote }}
