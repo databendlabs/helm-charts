@@ -59,7 +59,7 @@ spec:
                 case ${BASH_REMATCH[2]} in
                 0)
                   echo "initialize leader node";
-                  exec /databend-meta --id ${ID} --config-id ${ID} \
+                  exec /databend-meta --id ${ID} \
                       --single \
                       --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
                       --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
@@ -67,7 +67,7 @@ spec:
                   ;;
                 *)
                   echo "initialize follower node";
-                  exec /databend-meta --id ${ID} --config-id ${ID} \
+                  exec /databend-meta --id ${ID} \
                       --join "${NAME}-0.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004" \
                       --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
                       --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local" \
@@ -75,7 +75,7 @@ spec:
                   ;;
                 esac
               {{- else }}
-                exec /databend-meta --id ${ID} --config-id ${ID} \
+                exec /databend-meta --id ${ID} \
                   {{- range $i := until $replicaCount }}
                   --join "${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.cluster.local:28004" \
                   {{- end }}
@@ -99,18 +99,18 @@ spec:
             httpGet:
               path: /v1/health
               port: admin
-            initialDelaySeconds: {{ default 5 .Values.livenessProbe.initialDelaySeconds }}
-            periodSeconds: {{ default 15 .Values.livenessProbe.initialDelaySeconds }}
-            failureThreshold: {{ default 3 .Values.livenessProbe.initialDelaySeconds }}
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
           {{- end }}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
               path: /v1/health
               port: admin
-            initialDelaySeconds: {{ default 5 .Values.readinessProbe.initialDelaySeconds }}
-            periodSeconds: {{ default 15 .Values.readinessProbe.initialDelaySeconds }}
-            failureThreshold: {{ default 3 .Values.readinessProbe.initialDelaySeconds }}
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
