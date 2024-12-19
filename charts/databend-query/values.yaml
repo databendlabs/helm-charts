@@ -108,6 +108,7 @@ config:
       dir: "/var/log/databend"
     stderr:
       enabled: true
+      format: "json"
       level: "WARN"
     query:
       enabled: false
