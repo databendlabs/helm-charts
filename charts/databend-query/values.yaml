@@ -138,6 +138,7 @@ config:
     username: "root"
     password: "root"
     clientTimeoutInSecond: 60
+    autoSyncInterval: 60
 
   # [storage]
   storage:

@@ -84,6 +84,7 @@ data:
       username = {{ .Values.config.meta.username | quote }}
       password = {{ .Values.config.meta.password | quote }}
       client_timeout_in_second = {{ .Values.config.meta.clientTimeoutInSecond | default 60 }}
+      auto_sync_interval = {{ .Values.config.meta.autoSyncInterval | default 60 }}
 
     [storage]
       type = {{ $storageType | quote }}
