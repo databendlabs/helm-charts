@@ -102,5 +102,5 @@ jobs:
       - name: Collect Logs
         if: always()
         run: |
-          kubectl logs -n databend-meta -l app.kubernetes.io/name=databend-meta
-          kubectl logs -n tenant1 -l app.kubernetes.io/name=databend-query
+          kubectl logs --tail=1000 -n databend-meta -l app.kubernetes.io/name=databend-meta
+          kubectl logs --tail=1000 -n tenant1 -l app.kubernetes.io/name=databend-query
