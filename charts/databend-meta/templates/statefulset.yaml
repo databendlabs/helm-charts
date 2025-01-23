@@ -68,7 +68,7 @@ spec:
                 *)
                   echo "initialize follower node";
                   exec /databend-meta --id ${ID} \
-                      --join "${NAME}-0.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
+                      --join "${NAME}-0.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}:28004" \
                       --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
                       --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
                       --config-file /etc/databend/meta.yaml
@@ -77,7 +77,7 @@ spec:
               {{- else }}
                 exec /databend-meta --id ${ID} \
                   {{- range $i := until $replicaCount }}
-                  --join "${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
+                  --join "${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}:28004" \
                   {{- end }}
                   --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
                   --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
