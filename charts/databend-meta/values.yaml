@@ -76,7 +76,7 @@ config:
       prefixFilter: ""
     stderr:
       enabled: true
-      format: plain
+      format: text
       level: WARN
   clusterName: databend
   raft:
