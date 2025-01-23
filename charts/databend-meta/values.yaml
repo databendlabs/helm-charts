@@ -5,7 +5,7 @@
 bootstrap: false
 replicaCount: 1
 
-# This value should be the name of the file containing the statup script for your Databend-meta pods. 
+# This value should be the name of the file containing the statup script for your Databend-meta pods.
 # You will still need to mount your script as an extra volumes.
 customStartupScript: false
 
@@ -67,11 +67,18 @@ podMonitor:
 
 # would be ignored if `existingConfigMap` is set
 config:
+  log:
+    file:
+      enabled: false
+      level: INFO
+      format: json
+      dir: /data/databend-meta/log
+      prefixFilter: ""
+    stderr:
+      enabled: true
+      format: text
+      level: WARN
   clusterName: databend
-  logDir: /data/databend-meta/log
-  logLevel: INFO
-  logPrefixFilter: ""
-  stdLogLevel: WARN
   raft:
     dir: /data/databend-meta/raft
 
