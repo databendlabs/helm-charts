@@ -92,8 +92,6 @@ spec:
             - name: {{ $key }}
               containerPort: {{ $val }}
             {{- end }}
-            - name: raft
-              containerPort: 28004
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
