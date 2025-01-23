@@ -46,6 +46,7 @@ readinessProbe:
 
 service:
   type: ClusterIP
+  clusterDomain: "cluster.local"
   ports:
     admin: 28002
     grpc: 9191
