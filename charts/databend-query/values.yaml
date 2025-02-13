@@ -96,9 +96,6 @@ config:
       #   authType: double_sha1_password
       #   authString: 3081f32caef285c232d066033c89a78d88a6d8a5  # databend
     
-    # NOTE: use it for on premise session parameters 
-    settings:
-      timezone: "UTC"
 
   # [log]
   log:
