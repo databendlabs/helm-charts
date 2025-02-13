@@ -41,7 +41,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -119,7 +119,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_start_total[$__rate_interval])) by (kind)",
@@ -135,7 +135,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -213,7 +213,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_success_total[$__rate_interval])) by (kind)",
@@ -229,7 +229,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -307,7 +307,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_failed_total[$__rate_interval])) by (kind)",
@@ -323,7 +323,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -401,7 +401,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "histogram_quantile(0.95, sum(rate(databend_query_duration_ms_bucket[5m])) by (le))",
@@ -417,7 +417,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -495,7 +495,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_result_rows_total[$__rate_interval])) by (kind)",
@@ -511,7 +511,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -589,7 +589,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_result_bytes_total[$__rate_interval])) by (kind)",
@@ -605,7 +605,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -683,7 +683,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_session_connect_numbers_total{}[1m])) by (cluster_name)",
@@ -695,7 +695,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(session_close_numbers{}[1m])) by (cluster_name)",
@@ -711,7 +711,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -789,7 +789,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_scan_partitions_total[$__rate_interval])) by (kind)",
@@ -805,7 +805,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -883,7 +883,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_total_partitions_total[$__rate_interval])) by (kind)",
@@ -899,7 +899,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -977,7 +977,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_scan_rows_total[$__rate_interval])) by (kind)",
@@ -993,7 +993,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -1071,7 +1071,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_scan_bytes_total[$__rate_interval])) by (kind)",
@@ -1087,7 +1087,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -1165,7 +1165,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_scan_io_bytes_total[$__rate_interval])) by (kind)",
@@ -1181,7 +1181,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -1259,7 +1259,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "histogram_quantile(0.95, sum(rate(databend_query_scan_io_bytes_cost_ms_bucket[$__rate_interval])) by (le))",
@@ -1275,7 +1275,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -1353,7 +1353,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_write_rows_total[$__rate_interval])) by (kind)",
@@ -1369,7 +1369,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -1447,7 +1447,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_write_rows_total[$__rate_interval])) by (kind)",
@@ -1463,7 +1463,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -1541,7 +1541,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_query_write_io_bytes_total[$__rate_interval])) by (kind)",
@@ -1557,7 +1557,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -1635,7 +1635,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "max(databend_query_write_io_bytes_cost_ms{quantile=\"0.99\"}) by (kind)",
@@ -1665,7 +1665,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1745,7 +1745,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(increase(databend_meta_grpc_client_request_success_total{}[60s]) / 60)",
@@ -1757,7 +1757,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(increase(databend_meta_grpc_client_request_fail_total[60s])) by (pod) > 0",
@@ -1774,7 +1774,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1854,7 +1854,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(databend_meta_grpc_client_request_inflight)",
@@ -1866,7 +1866,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(increase(meta_grpc_client_request_fail{namespace=\"tn-$tenant\"}[60s])) by (pod) > 0",
@@ -1883,7 +1883,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1963,7 +1963,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_meta_grpc_client_request_success_total{}[1m])) by (request)",
@@ -1979,7 +1979,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -2059,7 +2059,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "histogram_quantile(0.90, sum(rate(databend_meta_grpc_client_request_duration_ms_bucket[5m])) by (le))  ",
@@ -2074,7 +2074,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -2154,7 +2154,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "histogram_quantile(0.75, sum(rate(databend_meta_grpc_client_request_duration_ms_bucket[5m])) by (le))  ",
@@ -2169,7 +2169,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -2249,7 +2249,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "histogram_quantile(0.50, sum(rate(databend_meta_grpc_client_request_duration_ms_bucket[5m])) by (le))  ",
@@ -2278,7 +2278,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -2356,7 +2356,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "histogram_quantile(0.99, sum(rate(databend_opendal_request_duration_seconds_bucket[5m])) by (le))  ",
@@ -2372,7 +2372,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -2475,7 +2475,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(rate(databend_opendal_requests_total[1m]) / 60)",
@@ -2491,7 +2491,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -2569,7 +2569,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(increase(databend_opendal_bytes_total{service=\"s3\"}[1m]) / 60) by (operation)",
@@ -2585,7 +2585,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -2663,7 +2663,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(increase(databend_opendal_bytes_total{service=\"moka\"}[1m]) / 60) by (operation)",
@@ -2679,7 +2679,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -2758,7 +2758,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(increase(databend_opendal_failures_total{service='s3'}[1m]) / 60) by (operation)",
@@ -2773,7 +2773,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdkv7r74peiv4e"
+            "uid": "prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -2852,7 +2852,7 @@
             {
               "datasource": {
                 "type": "prometheus",
-                "uid": "bdkv7r74peiv4e"
+                "uid": "prometheus"
               },
               "editorMode": "code",
               "expr": "sum(increase(databend_opendal_errors_total{service='s3'}[1m])) by (operation)",
@@ -2900,7 +2900,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "bdkv7r74peiv4e"
+          "uid": "prometheus"
         },
         "definition": "label_values(tenant)",
         "hide": 0,

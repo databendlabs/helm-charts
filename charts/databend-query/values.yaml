@@ -7,7 +7,7 @@ replicaCount: 1
 # Could be StatefulSet or Deployment
 workload: StatefulSet
 
-# By default, the queries are routed to the first node in the StatefulSet, and this node is considered 
+# By default, the queries are routed to the first node in the StatefulSet, and this node is considered
 # as the coordinator. If you want to enable load balance queries across nodes, set this to true. Please
 # note that when this is enabled, you can not get the consistent running queries by SHOW PROCESSLIST.
 enableLoadBalance: false
@@ -97,7 +97,7 @@ config:
       #   authString: 3081f32caef285c232d066033c89a78d88a6d8a5  # databend
     # NOTE: use it for on premise session parameters
     settings: {}
-    
+
 
   # [log]
   log:
@@ -113,15 +113,18 @@ config:
       enabled: false
       otlp_endpoint: ""
       otlp_protocol: "http"
+      otlp_labels: {}
     profile:
       enabled: false
       otlp_endpoint: ""
       otlp_protocol: "http"
+      otlp_labels: {}
 
   # [meta]
   meta:
     # If databend-meta is hosted in the same cluster as databend-data, you can enable this to generate endpoints in a K8s native way.
     generateEndpoints: false
+    clusterDomain: "cluster.local"
     # Databend-meta replica count
     replicas: 3
     # Databend-meta port if you need to change it
