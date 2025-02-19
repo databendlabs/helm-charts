@@ -79,7 +79,7 @@ config:
     clusterId: default
 
     managementMode: false
-    jwtKeyFile: ""
+    jwtKeyFiles: []
 
     maxMemoryLimitEnabled: false
     maxServerMemoryUsage: 0
