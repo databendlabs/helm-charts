@@ -31,7 +31,11 @@ data:
         name = {{ .name | quote }}
         auth_type = {{ .authType | quote }}
         {{- if eq .authType "sha256_password"}}
+        {{- if $.Values.config.query.passwords.generateSha256FromPlaintext }}
+        auth_string = {{ sha256sum .password | quote }}
+        {{- else }}
         auth_string = {{ .authString | quote }}
+        {{- end }}
         {{- else if eq .authType "double_sha1_password"}}
         auth_string = {{ .authString | quote }}
         {{- end }}
