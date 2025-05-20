@@ -88,6 +88,9 @@ config:
       max_active_sessions: 256
       databend_enterprise_license: ""
 
+    passwords:
+      generateSha256FromPlaintext: false
+
     # NOTE: user `root` is already built-in, will be ignored if defined here
     users: []
       # - name: databend
