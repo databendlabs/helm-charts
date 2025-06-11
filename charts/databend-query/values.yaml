@@ -75,8 +75,11 @@ podMonitor:
 config:
   # [query]
   query:
-    tenantId: ""
-    clusterId: default
+    # each tenant must have their own storage config different from other tenants
+    tenantId: "default"
+
+    # each helm release must have a different clusterId, fallback to release name if not set
+    clusterId: ""
 
     managementMode: false
     jwtKeyFiles: []

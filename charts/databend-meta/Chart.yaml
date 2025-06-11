@@ -15,9 +15,9 @@ keywords:
 
 type: application
 
-version: 0.10.0
+version: 0.10.1
 
-appVersion: "v1.2.680"
+appVersion: "v1.2.746-nightly"
 
 dependencies:
 - name: common
