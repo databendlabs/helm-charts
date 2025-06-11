@@ -9,8 +9,8 @@ data:
   config.toml: |-
     # databend query config
     [query]
-      tenant_id = {{ .Values.config.query.tenantId | default .Release.Name | quote }}
-      cluster_id = {{ .Values.config.query.clusterId | quote }}
+      tenant_id = {{ .Values.config.query.tenantId | quote }}
+      cluster_id = {{ .Values.config.query.clusterId | default .Release.Name | quote }}
 
       management_mode = {{ .Values.config.query.managementMode }}
       jwt_key_file = {{ .Values.config.query.jwtKeyFile | quote }}
