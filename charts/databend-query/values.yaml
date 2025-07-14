@@ -190,6 +190,9 @@ ingress:
           pathType: ImplementationSpecific
           # servicePort defaults to service.ports.http
           # servicePort: 8000
+        - path: /mysql
+          pathType: Prefix
+          servicePort: 3307
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
