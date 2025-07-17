@@ -42,11 +42,14 @@ service:
     metric: 7070
     admin: 8080
     flight: 9090
-
     http: 8000
     flightsql: 8900
     mysql: 3307
     ckhttp: 8124
+
+  # NodePort config (optional)
+  nodePorts: {}
+    # mysql: 30307  # If using nodeport, you can use this to specify the mysql port
 
   # Annotations to add to the service
   annotations: {}

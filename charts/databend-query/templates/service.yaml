@@ -4,9 +4,9 @@ metadata:
   name: {{ include "databend-query.fullname" . }}
   labels:
     {{- include "databend-query.labels" . | nindent 4 }}
-    {{- with .Values.service.extraLabels }}
+      {{- with .Values.service.extraLabels }}
       {{- toYaml . | nindent 4 }}
-    {{- end }}
+      {{- end }}
   {{- with .Values.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -16,9 +16,12 @@ spec:
   ports:
     {{- range $key, $val := .Values.service.ports }}
     - port: {{ $val }}
-      targetPort: {{ $key}}
+      targetPort: {{ $key }}
       protocol: TCP
       name: {{ $key }}
+      {{- if and (eq $.Values.service.type "NodePort") (hasKey $.Values.service.nodePorts $key) }}
+      nodePort: {{ index $.Values.service.nodePorts $key }}
+      {{- end }}
     {{- end }}
   selector:
     {{- include "databend-query.selectorLabels" . | nindent 4 }}
