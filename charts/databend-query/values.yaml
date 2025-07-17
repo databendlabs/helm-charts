@@ -50,7 +50,6 @@ service:
   # NodePort config (optional)
   nodePorts: {}
     # mysql: 30307  # If using nodeport, you can use this to specify the mysql port, default to 30307
-    mysql: 30307  # If use nodeport, you can use this to specify the mysql port,default is 30307
 
   # Annotations to add to the service
   annotations: {}
