@@ -25,9 +25,9 @@ spec:
     {{- end }}
   selector:
     {{- include "databend-query.selectorLabels" . | nindent 4 }}
-      {{- if and (eq .Values.workload "statefulset") (not .Values.enableLoadBalance) }}
-      statefulset.kubernetes.io/pod-name: {{ include "databend-query.fullname" . }}-0
-      {{- end }}
+    {{- if and (eq .Values.workload "statefulset") (not .Values.enableLoadBalance) }}
+    statefulset.kubernetes.io/pod-name: {{ include "databend-query.fullname" . }}-0
+    {{- end }}
   {{- with .Values.service.sessionAffinity }}
   sessionAffinity: {{ .type }}
   sessionAffinityConfig:

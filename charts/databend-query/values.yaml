@@ -37,7 +37,7 @@ readinessProbe:
   enabled: true
 
 service:
-  type: ClusterIP  # or use NodePort
+  type: ClusterIP
   ports:
     metric: 7070
     admin: 8080
@@ -47,9 +47,9 @@ service:
     mysql: 3307
     ckhttp: 8124
 
-  # NodePort config（optional）
+  # NodePort config (optional)
   nodePorts:
-    mysql: 30307  # if mysql need nodePort
+    mysql: 30307  # If use nodeport, you can use this to specify the mysql port,default is 30307
 
   # Annotations to add to the service
   annotations: {}
