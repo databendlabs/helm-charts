@@ -39,8 +39,7 @@ spec:
         {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          command:
-            - /databend-query
+          args:
             - -c
             - /etc/databend-query/config.toml
           securityContext:
