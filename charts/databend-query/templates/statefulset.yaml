@@ -51,15 +51,9 @@ spec:
             - name: {{ $key }}
               containerPort: {{ $val}}
             {{- end }}
-          {{- if .Values.enablePrestopHook }}
+          {{- with .Values.lifecycle }}
           lifecycle:
-            preStop:
-              exec:
-                command:
-                  - bash
-                  - -c
-                  - |
-                    gdb -quiet -batch -ex='thread apply all bt' -p 1 > /tmp/backtrace-${HOSTNAME}-$(date '+%Y-%m-%d-%H-%M-%S').txt
+            {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
@@ -127,9 +121,8 @@ spec:
             - name: cache
               mountPath: {{ .Values.cache.path | default "/var/lib/databend/cache" | quote }}
             {{- end }}
-            {{- if .Values.enablePrestopHook }}
-            - name: tmp
-              mountPath: /tmp
+            {{- with .Values.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
             {{- end }}
         {{- if .Values.sidecars }}
         {{- include "common.tplvalues.render" (dict "value" .Values.sidecars "context" $) | nindent 8 }}
@@ -138,10 +131,8 @@ spec:
         - name: config
           configMap:
             name: {{ include "databend-query.fullname" .}}
-        {{- if .Values.enablePrestopHook }}
-        - name: tmp
-          hostPath:
-            path: /tmp
+        {{- with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
         {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
