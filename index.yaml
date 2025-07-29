@@ -972,6 +972,30 @@ entries:
   databend-query:
   - apiVersion: v2
     appVersion: v1.2.769-nightly
+    created: "2025-07-29T07:09:38.586845443Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: A Helm chart for databend query
+    digest: 0a7e03e388d64f94541fd599be6f38272eaee472a50982c87c49d613fec9cfd8
+    home: https://databend.com
+    icon: https://databend.com/img/favicon.svg
+    keywords:
+    - olap
+    - cloud data warehouse
+    - query
+    maintainers:
+    - email: cloud.dev@databend.com
+      name: cloud.dev
+      url: https://databend.com
+    name: databend-query
+    type: application
+    urls:
+    - https://github.com/databendlabs/helm-charts/releases/download/databend-query-0.12.3/databend-query-0.12.3.tgz
+    version: 0.12.3
+  - apiVersion: v2
+    appVersion: v1.2.769-nightly
     created: "2025-07-23T05:42:51.540757804Z"
     dependencies:
     - name: common
@@ -2298,4 +2322,4 @@ entries:
     urls:
     - https://charts.databend.rs/databend-query-0.1.0.tgz
     version: 0.1.0
-generated: "2025-07-23T05:42:51.541416938Z"
+generated: "2025-07-29T07:09:38.587418363Z"
