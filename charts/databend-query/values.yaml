@@ -250,3 +250,5 @@ initContainers: []
 #   ports:
 #   - name: portname
 #     containerPort: 1234
+
+enablePrestopHook: false
