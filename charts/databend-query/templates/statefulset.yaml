@@ -51,6 +51,10 @@ spec:
             - name: {{ $key }}
               containerPort: {{ $val}}
             {{- end }}
+          {{- with .Values.lifecycle }}
+          lifecycle:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
@@ -117,6 +121,9 @@ spec:
             - name: cache
               mountPath: {{ .Values.cache.path | default "/var/lib/databend/cache" | quote }}
             {{- end }}
+            {{- with .Values.extraVolumeMounts }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
         {{- if .Values.sidecars }}
         {{- include "common.tplvalues.render" (dict "value" .Values.sidecars "context" $) | nindent 8 }}
         {{- end }}
@@ -124,6 +131,9 @@ spec:
         - name: config
           configMap:
             name: {{ include "databend-query.fullname" .}}
+        {{- with .Values.extraVolumes }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

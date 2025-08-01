@@ -250,3 +250,32 @@ initContainers: []
 #   ports:
 #   - name: portname
 #     containerPort: 1234
+
+# Lifecycle hooks configuration
+lifecycle: {}
+  # Example with preStop hook:
+  # preStop:
+  #   exec:
+  #     command:
+  #       - /bin/sh
+  #       - -c
+#       - "your custom command here"
+
+# Extra volumes to mount
+extraVolumes: []
+  # Example:
+  # - name: prestop-logs
+  #   hostPath:
+  #     path: /var/log/databend-prestop
+  #     type: DirectoryOrCreate
+  # - name: scripts
+  #   configMap:
+#     name: prestop-scripts
+
+# Extra volume mounts for the main container
+extraVolumeMounts: []
+  # Example:
+  # - name: prestop-logs
+  #   mountPath: /logs
+  # - name: scripts
+#   mountPath: /scripts
