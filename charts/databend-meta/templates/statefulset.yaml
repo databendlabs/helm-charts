@@ -59,7 +59,7 @@ spec:
                 case ${BASH_REMATCH[2]} in
                 0)
                   echo "initialize leader node";
-                  exec /databend-meta --id ${ID} \
+                  exec databend-meta --id ${ID} \
                       --single \
                       --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
                       --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
@@ -67,7 +67,7 @@ spec:
                   ;;
                 *)
                   echo "initialize follower node";
-                  exec /databend-meta --id ${ID} \
+                  exec databend-meta --id ${ID} \
                       --join "${NAME}-0.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}:{{ .Values.service.ports.raft }}" \
                       --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
                       --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
@@ -75,7 +75,7 @@ spec:
                   ;;
                 esac
               {{- else }}
-                exec /databend-meta --id ${ID} \
+                exec databend-meta --id ${ID} \
                   {{- range $i := until $replicaCount }}
                   --join "${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}:{{ .Values.service.ports.raft }}" \
                   {{- end }}
