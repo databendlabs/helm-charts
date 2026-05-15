@@ -19,7 +19,7 @@ jobs:
           - Deployment
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install k3d
         shell: bash
@@ -38,7 +38,9 @@ jobs:
           k3d cluster create databend
           kubectl cluster-info
 
-      - uses: azure/setup-helm@v4
+      - uses: azure/setup-helm@v5
+        with:
+          version: v3.19.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

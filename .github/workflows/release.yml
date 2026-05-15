@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Configure Git
@@ -18,15 +18,15 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
       - name: Install Helm
-        uses: azure/setup-helm@v1
+        uses: azure/setup-helm@v5
         with:
-          version: v3.8.1
+          version: v3.19.0
       - name: Helm Deps
         run: |
           helm repo add minio https://charts.min.io/
           helm repo add bitnami https://charts.bitnami.com/bitnami
       - name: Publish Helm chart
-        uses: helm/chart-releaser-action@v1.4.0
+        uses: helm/chart-releaser-action@v1
         with:
           charts_repo_url: https://charts.databend.com
         env:
