@@ -51,6 +51,19 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Format a host and port as a socket address. IPv6 hosts must be bracketed.
+*/}}
+{{- define "databend-meta.socketAddress" -}}
+{{- $host := .host | toString -}}
+{{- $port := .port | toString -}}
+{{- if and (contains ":" $host) (not (hasPrefix "[" $host)) -}}
+{{- printf "[%s]:%s" $host $port -}}
+{{- else -}}
+{{- printf "%s:%s" $host $port -}}
+{{- end -}}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "databend-meta.serviceAccountName" -}}

@@ -156,7 +156,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            {{- if .Values.existingConfigMaps }}
+            {{- if .Values.existingConfigMap }}
             name: {{ .Values.existingConfigMap }}
             {{- else }}
             name: {{ include "databend-meta.fullname" . }}

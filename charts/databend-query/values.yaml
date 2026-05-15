@@ -38,6 +38,9 @@ readinessProbe:
 
 service:
   type: ClusterIP
+  listenHost: "0.0.0.0"
+  ipFamilyPolicy: ""
+  ipFamilies: []
   ports:
     metric: 7070
     admin: 8080
