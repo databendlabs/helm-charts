@@ -77,7 +77,7 @@ spec:
               {{- else }}
                 exec databend-meta --id ${ID} \
                   {{- range $i := until $replicaCount }}
-                  --join "${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}:{{ .Values.service.ports.raft }}" \
+                  --join "${NAME}-{{ $i }}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ $.Values.service.clusterDomain }}:{{ $.Values.service.ports.raft }}" \
                   {{- end }}
                   --raft-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
                   --grpc-api-advertise-host "${POD_NAME}.{{ $fullName }}.${POD_NAMESPACE}.svc.{{ .Values.service.clusterDomain }}" \
