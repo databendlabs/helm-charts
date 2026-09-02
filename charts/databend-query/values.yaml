@@ -106,6 +106,9 @@ config:
       #   authString: 3081f32caef285c232d066033c89a78d88a6d8a5  # databend
     # NOTE: use it for on premise session parameters
     settings: {}
+    # Internal type hints used by benddeploy to render large integer settings
+    # without passing them through Helm as float64.
+    settingsNumeric: {}
 
 
   # [log]

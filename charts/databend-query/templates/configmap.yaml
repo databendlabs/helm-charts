@@ -38,9 +38,14 @@ data:
       {{- end }}
 
       [query.settings]
+        {{- $numericSettings := .Values.config.query.settingsNumeric | default dict }}
         {{- range $field, $value := .Values.config.query.settings }}
-        {{- if (kindIs "string" $value) }}
+        {{- if hasKey $numericSettings $field }}
+        {{ $field }} = {{ index $numericSettings $field | int64 }}
+        {{- else if (kindIs "string" $value) }}
         {{ $field }} = {{ $value | quote }}
+        {{- else if (kindIs "float64" $value) }}
+        {{ $field }} = {{ $value | int64 }}
         {{- else }}
         {{ $field }} = {{ $value }}
         {{- end }}
